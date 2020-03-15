@@ -2,7 +2,7 @@ sudo: false
 os:
 - linux
 language: haskell
-cabal: "2.4"
+cabal: '2.4'
 cache:
   directories:
   - "$HOME/.stack"
@@ -30,3 +30,6 @@ deploy:
   skip_cleanup: true
   on:
     branch: master
+env:
+  global:
+    secure: G03GAG3R8QhHP15lcLyl5ndd8m3qDGfgYvupzTc7Qy6FuZQhmuztRqcmIXG8WZFvABsZDpB62fzvE6f9/Eio3fN17mCDBre94WTqS0u2gi6L5o7qFkVVse3kupI+xzJJMXKCZ3KcwNraK0Ky6XgPW9Fjc7Q2FdIvMblR2KYPE05SbaSMCXZs1yeXiVL8+ga0CF3jfS2nbkRoi60XR0wEn7Ri7EatPhaXySGd/H2jlwn2zxaOA2/dwNfdy6ogwNgGH3i+IL3E5f4nnjepeFtU0nFXZa1+ccTy9moaozlwWNztnfjkT51HnrqX/c6GWkEgE1Kbj6/MTPK1kATbV4haPDsAYuwihxvQdFUjfedowgZr2q1TUdvOoCbAm1FYodVMxMmLrHm5iTfqtSCznZrBdiKDnVpFFH8L00AmvRDuD5A69XJVLsbjjR7NVYZzuoPhSLba+CPO/I0+9wF4GQKgvoO5uCvilSAZFL4vQ84ZDnLnFnq+da+hcVaCf8uVwqFnnC/HRt/VLP1TTaQc2XkqYr1VVeO4RL4lnMmAXbmH3EZVbHVScGwolJH7NcnGOgvaRz8i38DRLwXWsXLbJlBvT1ar0uV+ToPs8MbKTBQhCw8RkZnQRcJ38N7EOhB3TkUPULLBT5nNPpl7gN+iXxZmZ+zT3SbmI9dAxL9sqenNWI0=
