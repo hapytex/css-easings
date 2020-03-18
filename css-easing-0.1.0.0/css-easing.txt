@@ -5,5 +5,27 @@
 @package css-easing
 @version 0.1.0.0
 
-module Lib
-someFunc :: IO ()
+module Css.Easing
+data Easing
+Steps :: Int -> JumpTerm -> Easing
+CubicBezier :: Scientific -> Scientific -> Scientific -> Scientific -> Easing
+data JumpTerm
+JumpStart :: JumpTerm
+JumpEnd :: JumpTerm
+JumpNone :: JumpTerm
+JumpBoth :: JumpTerm
+pattern Start :: JumpTerm
+pattern End :: JumpTerm
+pattern StepStart :: Easing
+pattern StepEnd :: Easing
+pattern Ease :: Easing
+pattern Linear :: Easing
+pattern EaseIn :: Easing
+pattern EaseOut :: Easing
+pattern EaseInOut :: Easing
+instance GHC.Show.Show Css.Easing.JumpTerm
+instance GHC.Read.Read Css.Easing.JumpTerm
+instance GHC.Classes.Ord Css.Easing.JumpTerm
+instance GHC.Classes.Eq Css.Easing.JumpTerm
+instance GHC.Enum.Enum Css.Easing.JumpTerm
+instance GHC.Enum.Bounded Css.Easing.JumpTerm
