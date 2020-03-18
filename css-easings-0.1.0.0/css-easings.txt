@@ -23,9 +23,38 @@ pattern Linear :: Easing
 pattern EaseIn :: Easing
 pattern EaseOut :: Easing
 pattern EaseInOut :: Easing
+pattern EaseInSine :: Easing
+pattern EaseOutSine :: Easing
+pattern EaseInOutSine :: Easing
+pattern EaseInQuad :: Easing
+pattern EaseOutQuad :: Easing
+pattern EaseInOutQuad :: Easing
+pattern EaseInCubic :: Easing
+pattern EaseOutCubic :: Easing
+pattern EaseInOutCubic :: Easing
+pattern EaseInQuart :: Easing
+pattern EaseOutQuart :: Easing
+pattern EaseInOutQuart :: Easing
+pattern EaseInQuint :: Easing
+pattern EaseOutQuint :: Easing
+pattern EaseInOutQuint :: Easing
+pattern EaseInExpo :: Easing
+pattern EaseOutExpo :: Easing
+pattern EaseInOutExpo :: Easing
+pattern EaseInCirc :: Easing
+pattern EaseOutCirc :: Easing
+pattern EaseInOutCirc :: Easing
+pattern EaseInBack :: Easing
+pattern EaseOutBack :: Easing
+pattern EaseInOutBack :: Easing
+instance GHC.Show.Show Css.Easing.Easing
+instance GHC.Classes.Ord Css.Easing.Easing
+instance GHC.Classes.Eq Css.Easing.Easing
 instance GHC.Show.Show Css.Easing.JumpTerm
 instance GHC.Read.Read Css.Easing.JumpTerm
 instance GHC.Classes.Ord Css.Easing.JumpTerm
 instance GHC.Classes.Eq Css.Easing.JumpTerm
 instance GHC.Enum.Enum Css.Easing.JumpTerm
 instance GHC.Enum.Bounded Css.Easing.JumpTerm
+instance Data.Default.Class.Default Css.Easing.Easing
+instance Data.Default.Class.Default Css.Easing.JumpTerm

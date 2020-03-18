@@ -1,26 +1,87 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><link rel="stylesheet" type="text/css" href="style.css" /><script type="text/javascript" src="highlight.js"></script></head><body><pre><span id="%24con2tag_DtPZySHs82u8krqWvKFBvs"><span id="%24maxtag_DtPZySHs82u8krqWvKFBvs"><span id="%24tag2con_DtPZySHs82u8krqWvKFBvs"></span></span></span><span class="hs-pragma">{-# LANGUAGE PatternSynonyms #-}</span><span>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><link rel="stylesheet" type="text/css" href="style.css" /><script type="text/javascript" src="highlight.js"></script></head><body><pre><span id="%24con2tag_Hi3g6E7JpHOBxIRrLJ65aX"><span id="%24con2tag_8qK9AWPyr6l1GphTaf2t0I"><span id="%24maxtag_8qK9AWPyr6l1GphTaf2t0I"><span id="%24tag2con_8qK9AWPyr6l1GphTaf2t0I"></span></span></span></span><span class="hs-pragma">{-# LANGUAGE PatternSynonyms #-}</span><span>
 </span><span id="line-2"></span><span>
 </span><span id="line-3"></span><span class="hs-keyword">module</span><span> </span><span class="hs-identifier">Css.Easing</span><span> </span><span class="hs-keyword">where</span><span>
 </span><span id="line-4"></span><span>
 </span><span id="line-5"></span><span class="hs-keyword">import</span><span> </span><span class="annot"><span class="hs-identifier">Data.Scientific</span></span><span>
-</span><span id="line-6"></span><span>
-</span><span id="line-7"></span><span class="hs-keyword">data</span><span> </span><span id="Easing"><span class="annot"><a href="Css.Easing.html#Easing"><span class="hs-identifier hs-var">Easing</span></a></span></span><span>
-</span><span id="line-8"></span><span>    </span><span class="hs-glyph">=</span><span> </span><span id="Steps"><span class="annot"><a href="Css.Easing.html#Steps"><span class="hs-identifier hs-var">Steps</span></a></span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">Int</span></span><span> </span><span class="annot"><a href="Css.Easing.html#JumpTerm"><span class="hs-identifier hs-type">JumpTerm</span></a></span><span>
-</span><span id="line-9"></span><span>    </span><span class="hs-glyph">|</span><span> </span><span id="CubicBezier"><span class="annot"><a href="Css.Easing.html#CubicBezier"><span class="hs-identifier hs-var">CubicBezier</span></a></span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">Scientific</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">Scientific</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">Scientific</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">Scientific</span></span><span>
-</span><span id="line-10"></span><span>
-</span><span id="line-11"></span><span class="hs-keyword">data</span><span> </span><span id="JumpTerm"><span class="annot"><a href="Css.Easing.html#JumpTerm"><span class="hs-identifier hs-var">JumpTerm</span></a></span></span><span>
-</span><span id="line-12"></span><span>    </span><span class="hs-glyph">=</span><span> </span><span id="JumpStart"><span class="annot"><a href="Css.Easing.html#JumpStart"><span class="hs-identifier hs-var">JumpStart</span></a></span></span><span>
-</span><span id="line-13"></span><span>    </span><span class="hs-glyph">|</span><span> </span><span id="JumpEnd"><span class="annot"><a href="Css.Easing.html#JumpEnd"><span class="hs-identifier hs-var">JumpEnd</span></a></span></span><span>
-</span><span id="line-14"></span><span>    </span><span class="hs-glyph">|</span><span> </span><span id="JumpNone"><span class="annot"><a href="Css.Easing.html#JumpNone"><span class="hs-identifier hs-var">JumpNone</span></a></span></span><span>
-</span><span id="line-15"></span><span>    </span><span class="hs-glyph">|</span><span> </span><span id="JumpBoth"><span class="annot"><a href="Css.Easing.html#JumpBoth"><span class="hs-identifier hs-var">JumpBoth</span></a></span></span><span>
-</span><span id="line-16"></span><span>    </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679055003"><span id="local-6989586621679055005"><span class="annot"><span class="annottext">JumpTerm
+</span><span id="line-6"></span><span class="hs-keyword">import</span><span> </span><span class="annot"><span class="hs-identifier">Data.Default</span></span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier">Default</span></span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier">def</span></span><span class="hs-special">)</span><span class="hs-special">)</span><span>
+</span><span id="line-7"></span><span>
+</span><span id="line-8"></span><span class="hs-keyword">data</span><span> </span><span id="Easing"><span class="annot"><a href="Css.Easing.html#Easing"><span class="hs-identifier hs-var">Easing</span></a></span></span><span>
+</span><span id="line-9"></span><span>    </span><span class="hs-glyph">=</span><span> </span><span id="Steps"><span class="annot"><a href="Css.Easing.html#Steps"><span class="hs-identifier hs-var">Steps</span></a></span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">Int</span></span><span> </span><span class="annot"><a href="Css.Easing.html#JumpTerm"><span class="hs-identifier hs-type">JumpTerm</span></a></span><span>
+</span><span id="line-10"></span><span>    </span><span class="hs-glyph">|</span><span> </span><span id="CubicBezier"><span class="annot"><a href="Css.Easing.html#CubicBezier"><span class="hs-identifier hs-var">CubicBezier</span></a></span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">Scientific</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">Scientific</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">Scientific</span></span><span> </span><span class="annot"><span class="hs-identifier hs-type">Scientific</span></span><span>
+</span><span id="line-11"></span><span>    </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679081304"><span id="local-6989586621679081306"><span class="annot"><span class="annottext">Easing -&gt; Easing -&gt; Bool
+(Easing -&gt; Easing -&gt; Bool)
+-&gt; (Easing -&gt; Easing -&gt; Bool) -&gt; Eq Easing
+forall a. (a -&gt; a -&gt; Bool) -&gt; (a -&gt; a -&gt; Bool) -&gt; Eq a
+/= :: Easing -&gt; Easing -&gt; Bool
+$c/= :: Easing -&gt; Easing -&gt; Bool
+== :: Easing -&gt; Easing -&gt; Bool
+$c== :: Easing -&gt; Easing -&gt; Bool
+</span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var">Eq</span></span></span></span><span class="hs-special">,</span><span> </span><span id="local-6989586621679081288"><span id="local-6989586621679081290"><span id="local-6989586621679081292"><span id="local-6989586621679081294"><span id="local-6989586621679081296"><span id="local-6989586621679081298"><span id="local-6989586621679081300"><span class="annot"><span class="annottext">Eq Easing
+Eq Easing =&gt;
+(Easing -&gt; Easing -&gt; Ordering)
+-&gt; (Easing -&gt; Easing -&gt; Bool)
+-&gt; (Easing -&gt; Easing -&gt; Bool)
+-&gt; (Easing -&gt; Easing -&gt; Bool)
+-&gt; (Easing -&gt; Easing -&gt; Bool)
+-&gt; (Easing -&gt; Easing -&gt; Easing)
+-&gt; (Easing -&gt; Easing -&gt; Easing)
+-&gt; Ord Easing
+Easing -&gt; Easing -&gt; Bool
+Easing -&gt; Easing -&gt; Ordering
+Easing -&gt; Easing -&gt; Easing
+forall a.
+Eq a =&gt;
+(a -&gt; a -&gt; Ordering)
+-&gt; (a -&gt; a -&gt; Bool)
+-&gt; (a -&gt; a -&gt; Bool)
+-&gt; (a -&gt; a -&gt; Bool)
+-&gt; (a -&gt; a -&gt; Bool)
+-&gt; (a -&gt; a -&gt; a)
+-&gt; (a -&gt; a -&gt; a)
+-&gt; Ord a
+min :: Easing -&gt; Easing -&gt; Easing
+$cmin :: Easing -&gt; Easing -&gt; Easing
+max :: Easing -&gt; Easing -&gt; Easing
+$cmax :: Easing -&gt; Easing -&gt; Easing
+&gt;= :: Easing -&gt; Easing -&gt; Bool
+$c&gt;= :: Easing -&gt; Easing -&gt; Bool
+&gt; :: Easing -&gt; Easing -&gt; Bool
+$c&gt; :: Easing -&gt; Easing -&gt; Bool
+&lt;= :: Easing -&gt; Easing -&gt; Bool
+$c&lt;= :: Easing -&gt; Easing -&gt; Bool
+&lt; :: Easing -&gt; Easing -&gt; Bool
+$c&lt; :: Easing -&gt; Easing -&gt; Bool
+compare :: Easing -&gt; Easing -&gt; Ordering
+$ccompare :: Easing -&gt; Easing -&gt; Ordering
+$cp1Ord :: Eq Easing
+</span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var">Ord</span></span></span></span></span></span></span></span></span><span class="hs-special">,</span><span> </span><span id="local-6989586621679081281"><span id="local-6989586621679081283"><span id="local-6989586621679081285"><span class="annot"><span class="annottext">Int -&gt; Easing -&gt; ShowS
+[Easing] -&gt; ShowS
+Easing -&gt; String
+(Int -&gt; Easing -&gt; ShowS)
+-&gt; (Easing -&gt; String) -&gt; ([Easing] -&gt; ShowS) -&gt; Show Easing
+forall a.
+(Int -&gt; a -&gt; ShowS) -&gt; (a -&gt; String) -&gt; ([a] -&gt; ShowS) -&gt; Show a
+showList :: [Easing] -&gt; ShowS
+$cshowList :: [Easing] -&gt; ShowS
+show :: Easing -&gt; String
+$cshow :: Easing -&gt; String
+showsPrec :: Int -&gt; Easing -&gt; ShowS
+$cshowsPrec :: Int -&gt; Easing -&gt; ShowS
+</span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var">Show</span></span></span></span></span><span class="hs-special">)</span><span>
+</span><span id="line-12"></span><span>
+</span><span id="line-13"></span><span class="hs-keyword">data</span><span> </span><span id="JumpTerm"><span class="annot"><a href="Css.Easing.html#JumpTerm"><span class="hs-identifier hs-var">JumpTerm</span></a></span></span><span>
+</span><span id="line-14"></span><span>    </span><span class="hs-glyph">=</span><span> </span><span id="JumpStart"><span class="annot"><a href="Css.Easing.html#JumpStart"><span class="hs-identifier hs-var">JumpStart</span></a></span></span><span>
+</span><span id="line-15"></span><span>    </span><span class="hs-glyph">|</span><span> </span><span id="JumpEnd"><span class="annot"><a href="Css.Easing.html#JumpEnd"><span class="hs-identifier hs-var">JumpEnd</span></a></span></span><span>
+</span><span id="line-16"></span><span>    </span><span class="hs-glyph">|</span><span> </span><span id="JumpNone"><span class="annot"><a href="Css.Easing.html#JumpNone"><span class="hs-identifier hs-var">JumpNone</span></a></span></span><span>
+</span><span id="line-17"></span><span>    </span><span class="hs-glyph">|</span><span> </span><span id="JumpBoth"><span class="annot"><a href="Css.Easing.html#JumpBoth"><span class="hs-identifier hs-var">JumpBoth</span></a></span></span><span>
+</span><span id="line-18"></span><span>    </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679081272"><span id="local-6989586621679081274"><span class="annot"><span class="annottext">JumpTerm
 JumpTerm -&gt; JumpTerm -&gt; Bounded JumpTerm
 forall a. a -&gt; a -&gt; Bounded a
 maxBound :: JumpTerm
 $cmaxBound :: JumpTerm
 minBound :: JumpTerm
 $cminBound :: JumpTerm
-</span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var">Bounded</span></span></span></span><span class="hs-special">,</span><span> </span><span id="local-6989586621679054986"><span id="local-6989586621679054988"><span id="local-6989586621679054990"><span id="local-6989586621679054992"><span id="local-6989586621679054994"><span id="local-6989586621679054996"><span id="local-6989586621679054998"><span id="local-6989586621679055000"><span class="annot"><span class="annottext">Int -&gt; JumpTerm
+</span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var">Bounded</span></span></span></span><span class="hs-special">,</span><span> </span><span id="local-6989586621679081255"><span id="local-6989586621679081257"><span id="local-6989586621679081259"><span id="local-6989586621679081261"><span id="local-6989586621679081263"><span id="local-6989586621679081265"><span id="local-6989586621679081267"><span id="local-6989586621679081269"><span class="annot"><span class="annottext">Int -&gt; JumpTerm
 JumpTerm -&gt; Int
 JumpTerm -&gt; [JumpTerm]
 JumpTerm -&gt; JumpTerm
@@ -61,7 +122,7 @@ pred :: JumpTerm -&gt; JumpTerm
 $cpred :: JumpTerm -&gt; JumpTerm
 succ :: JumpTerm -&gt; JumpTerm
 $csucc :: JumpTerm -&gt; JumpTerm
-</span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var">Enum</span></span></span></span></span></span></span></span></span></span><span class="hs-special">,</span><span> </span><span id="local-6989586621679054981"><span id="local-6989586621679054983"><span class="annot"><span class="annottext">JumpTerm -&gt; JumpTerm -&gt; Bool
+</span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var">Enum</span></span></span></span></span></span></span></span></span></span><span class="hs-special">,</span><span> </span><span id="local-6989586621679081250"><span id="local-6989586621679081252"><span class="annot"><span class="annottext">JumpTerm -&gt; JumpTerm -&gt; Bool
 (JumpTerm -&gt; JumpTerm -&gt; Bool)
 -&gt; (JumpTerm -&gt; JumpTerm -&gt; Bool) -&gt; Eq JumpTerm
 forall a. (a -&gt; a -&gt; Bool) -&gt; (a -&gt; a -&gt; Bool) -&gt; Eq a
@@ -69,7 +130,7 @@ forall a. (a -&gt; a -&gt; Bool) -&gt; (a -&gt; a -&gt; Bool) -&gt; Eq a
 $c/= :: JumpTerm -&gt; JumpTerm -&gt; Bool
 == :: JumpTerm -&gt; JumpTerm -&gt; Bool
 $c== :: JumpTerm -&gt; JumpTerm -&gt; Bool
-</span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var">Eq</span></span></span></span><span class="hs-special">,</span><span> </span><span id="local-6989586621679054965"><span id="local-6989586621679054967"><span id="local-6989586621679054969"><span id="local-6989586621679054971"><span id="local-6989586621679054973"><span id="local-6989586621679054975"><span id="local-6989586621679054977"><span class="annot"><span class="annottext">Eq JumpTerm
+</span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var">Eq</span></span></span></span><span class="hs-special">,</span><span> </span><span id="local-6989586621679081235"><span id="local-6989586621679081237"><span id="local-6989586621679081239"><span id="local-6989586621679081241"><span id="local-6989586621679081243"><span id="local-6989586621679081245"><span id="local-6989586621679081247"><span class="annot"><span class="annottext">Eq JumpTerm
 Eq JumpTerm =&gt;
 (JumpTerm -&gt; JumpTerm -&gt; Ordering)
 -&gt; (JumpTerm -&gt; JumpTerm -&gt; Bool)
@@ -107,7 +168,7 @@ $c&lt; :: JumpTerm -&gt; JumpTerm -&gt; Bool
 compare :: JumpTerm -&gt; JumpTerm -&gt; Ordering
 $ccompare :: JumpTerm -&gt; JumpTerm -&gt; Ordering
 $cp1Ord :: Eq JumpTerm
-</span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var">Ord</span></span></span></span></span></span></span></span></span><span class="hs-special">,</span><span> </span><span id="local-6989586621679054956"><span id="local-6989586621679054958"><span id="local-6989586621679054960"><span id="local-6989586621679054962"><span class="annot"><span class="annottext">ReadPrec [JumpTerm]
+</span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var">Ord</span></span></span></span></span></span></span></span></span><span class="hs-special">,</span><span> </span><span id="local-6989586621679081227"><span id="local-6989586621679081229"><span id="local-6989586621679081231"><span id="local-6989586621679081233"><span class="annot"><span class="annottext">ReadPrec [JumpTerm]
 ReadPrec JumpTerm
 Int -&gt; ReadS JumpTerm
 ReadS [JumpTerm]
@@ -127,7 +188,7 @@ readList :: ReadS [JumpTerm]
 $creadList :: ReadS [JumpTerm]
 readsPrec :: Int -&gt; ReadS JumpTerm
 $creadsPrec :: Int -&gt; ReadS JumpTerm
-</span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var">Read</span></span></span></span></span></span><span class="hs-special">,</span><span> </span><span id="local-6989586621679054949"><span id="local-6989586621679054951"><span id="local-6989586621679054953"><span class="annot"><span class="annottext">Int -&gt; JumpTerm -&gt; ShowS
+</span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var">Read</span></span></span></span></span></span><span class="hs-special">,</span><span> </span><span id="local-6989586621679081220"><span id="local-6989586621679081222"><span id="local-6989586621679081224"><span class="annot"><span class="annottext">Int -&gt; JumpTerm -&gt; ShowS
 [JumpTerm] -&gt; ShowS
 JumpTerm -&gt; String
 (Int -&gt; JumpTerm -&gt; ShowS)
@@ -141,49 +202,180 @@ $cshow :: JumpTerm -&gt; String
 showsPrec :: Int -&gt; JumpTerm -&gt; ShowS
 $cshowsPrec :: Int -&gt; JumpTerm -&gt; ShowS
 </span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var">Show</span></span></span></span></span><span class="hs-special">)</span><span>
-</span><span id="line-17"></span><span>
-</span><span id="line-18"></span><span class="hs-keyword">pattern</span><span> </span><span class="annot"><a href="Css.Easing.html#Start"><span class="hs-identifier hs-type">Start</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><a href="Css.Easing.html#JumpTerm"><span class="hs-identifier hs-type">JumpTerm</span></a></span><span>
-</span><span id="line-19"></span><span class="hs-keyword">pattern</span><span> </span><span id="%24bStart"><span id="%24mStart"><span id="Start"><span class="annot"><span class="annottext">$bStart :: JumpTerm
+</span><span id="line-19"></span><span>
+</span><span id="line-20"></span><span class="hs-keyword">pattern</span><span> </span><span class="annot"><a href="Css.Easing.html#Start"><span class="hs-identifier hs-type">Start</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><a href="Css.Easing.html#JumpTerm"><span class="hs-identifier hs-type">JumpTerm</span></a></span><span>
+</span><span id="line-21"></span><span class="hs-keyword">pattern</span><span> </span><span id="%24bStart"><span id="%24mStart"><span id="Start"><span class="annot"><span class="annottext">$bStart :: JumpTerm
 $mStart :: forall r. JumpTerm -&gt; (Void# -&gt; r) -&gt; (Void# -&gt; r) -&gt; r
 </span><a href="Css.Easing.html#%24bStart"><span class="hs-identifier hs-var hs-var hs-var">Start</span></a></span></span></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><a href="Css.Easing.html#JumpStart"><span class="hs-identifier hs-type">JumpStart</span></a></span><span>
-</span><span id="line-20"></span><span>
-</span><span id="line-21"></span><span class="hs-keyword">pattern</span><span> </span><span class="annot"><a href="Css.Easing.html#End"><span class="hs-identifier hs-type">End</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><a href="Css.Easing.html#JumpTerm"><span class="hs-identifier hs-type">JumpTerm</span></a></span><span>
-</span><span id="line-22"></span><span class="hs-keyword">pattern</span><span> </span><span id="%24bEnd"><span id="%24mEnd"><span id="End"><span class="annot"><span class="annottext">$bEnd :: JumpTerm
+</span><span id="line-22"></span><span>
+</span><span id="line-23"></span><span class="hs-keyword">pattern</span><span> </span><span class="annot"><a href="Css.Easing.html#End"><span class="hs-identifier hs-type">End</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><a href="Css.Easing.html#JumpTerm"><span class="hs-identifier hs-type">JumpTerm</span></a></span><span>
+</span><span id="line-24"></span><span class="hs-keyword">pattern</span><span> </span><span id="%24bEnd"><span id="%24mEnd"><span id="End"><span class="annot"><span class="annottext">$bEnd :: JumpTerm
 $mEnd :: forall r. JumpTerm -&gt; (Void# -&gt; r) -&gt; (Void# -&gt; r) -&gt; r
 </span><a href="Css.Easing.html#%24bEnd"><span class="hs-identifier hs-var hs-var hs-var">End</span></a></span></span></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><a href="Css.Easing.html#JumpEnd"><span class="hs-identifier hs-type">JumpEnd</span></a></span><span>
-</span><span id="line-23"></span><span>
-</span><span id="line-24"></span><span class="hs-keyword">pattern</span><span> </span><span class="annot"><a href="Css.Easing.html#StepStart"><span class="hs-identifier hs-type">StepStart</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><a href="Css.Easing.html#Easing"><span class="hs-identifier hs-type">Easing</span></a></span><span>
-</span><span id="line-25"></span><span class="hs-keyword">pattern</span><span> </span><span id="%24bStepStart"><span id="%24mStepStart"><span id="StepStart"><span class="annot"><span class="annottext">$bStepStart :: Easing
+</span><span id="line-25"></span><span>
+</span><span id="line-26"></span><span class="hs-keyword">pattern</span><span> </span><span class="annot"><a href="Css.Easing.html#StepStart"><span class="hs-identifier hs-type">StepStart</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><a href="Css.Easing.html#Easing"><span class="hs-identifier hs-type">Easing</span></a></span><span>
+</span><span id="line-27"></span><span class="hs-keyword">pattern</span><span> </span><span id="%24bStepStart"><span id="%24mStepStart"><span id="StepStart"><span class="annot"><span class="annottext">$bStepStart :: Easing
 $mStepStart :: forall r. Easing -&gt; (Void# -&gt; r) -&gt; (Void# -&gt; r) -&gt; r
 </span><a href="Css.Easing.html#%24bStepStart"><span class="hs-identifier hs-var hs-var hs-var">StepStart</span></a></span></span></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><a href="Css.Easing.html#Steps"><span class="hs-identifier hs-type">Steps</span></a></span><span> </span><span class="hs-number">1</span><span> </span><span class="annot"><a href="Css.Easing.html#JumpStart"><span class="hs-identifier hs-type">JumpStart</span></a></span><span>
-</span><span id="line-26"></span><span>
-</span><span id="line-27"></span><span class="hs-keyword">pattern</span><span> </span><span class="annot"><a href="Css.Easing.html#StepEnd"><span class="hs-identifier hs-type">StepEnd</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><a href="Css.Easing.html#Easing"><span class="hs-identifier hs-type">Easing</span></a></span><span>
-</span><span id="line-28"></span><span class="hs-keyword">pattern</span><span> </span><span id="%24bStepEnd"><span id="%24mStepEnd"><span id="StepEnd"><span class="annot"><span class="annottext">$bStepEnd :: Easing
+</span><span id="line-28"></span><span>
+</span><span id="line-29"></span><span class="hs-keyword">pattern</span><span> </span><span class="annot"><a href="Css.Easing.html#StepEnd"><span class="hs-identifier hs-type">StepEnd</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><a href="Css.Easing.html#Easing"><span class="hs-identifier hs-type">Easing</span></a></span><span>
+</span><span id="line-30"></span><span class="hs-keyword">pattern</span><span> </span><span id="%24bStepEnd"><span id="%24mStepEnd"><span id="StepEnd"><span class="annot"><span class="annottext">$bStepEnd :: Easing
 $mStepEnd :: forall r. Easing -&gt; (Void# -&gt; r) -&gt; (Void# -&gt; r) -&gt; r
 </span><a href="Css.Easing.html#%24bStepEnd"><span class="hs-identifier hs-var hs-var hs-var">StepEnd</span></a></span></span></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><a href="Css.Easing.html#Steps"><span class="hs-identifier hs-type">Steps</span></a></span><span> </span><span class="hs-number">1</span><span> </span><span class="annot"><a href="Css.Easing.html#JumpEnd"><span class="hs-identifier hs-type">JumpEnd</span></a></span><span>
-</span><span id="line-29"></span><span>
-</span><span id="line-30"></span><span class="hs-keyword">pattern</span><span> </span><span class="annot"><a href="Css.Easing.html#Ease"><span class="hs-identifier hs-type">Ease</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><a href="Css.Easing.html#Easing"><span class="hs-identifier hs-type">Easing</span></a></span><span>
-</span><span id="line-31"></span><span class="hs-keyword">pattern</span><span> </span><span id="%24bEase"><span id="%24mEase"><span id="Ease"><span class="annot"><span class="annottext">$bEase :: Easing
+</span><span id="line-31"></span><span>
+</span><span id="line-32"></span><span class="hs-keyword">pattern</span><span> </span><span class="annot"><a href="Css.Easing.html#Ease"><span class="hs-identifier hs-type">Ease</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><a href="Css.Easing.html#Easing"><span class="hs-identifier hs-type">Easing</span></a></span><span>
+</span><span id="line-33"></span><span class="hs-keyword">pattern</span><span> </span><span id="%24bEase"><span id="%24mEase"><span id="Ease"><span class="annot"><span class="annottext">$bEase :: Easing
 $mEase :: forall r. Easing -&gt; (Void# -&gt; r) -&gt; (Void# -&gt; r) -&gt; r
 </span><a href="Css.Easing.html#%24bEase"><span class="hs-identifier hs-var hs-var hs-var">Ease</span></a></span></span></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><a href="Css.Easing.html#CubicBezier"><span class="hs-identifier hs-type">CubicBezier</span></a></span><span> </span><span class="hs-number">0.25</span><span> </span><span class="hs-number">0.1</span><span> </span><span class="hs-number">0.25</span><span> </span><span class="hs-number">1</span><span>
-</span><span id="line-32"></span><span>
-</span><span id="line-33"></span><span class="hs-keyword">pattern</span><span> </span><span class="annot"><a href="Css.Easing.html#Linear"><span class="hs-identifier hs-type">Linear</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><a href="Css.Easing.html#Easing"><span class="hs-identifier hs-type">Easing</span></a></span><span>
-</span><span id="line-34"></span><span class="hs-keyword">pattern</span><span> </span><span id="%24bLinear"><span id="%24mLinear"><span id="Linear"><span class="annot"><span class="annottext">$bLinear :: Easing
+</span><span id="line-34"></span><span>
+</span><span id="line-35"></span><span class="hs-keyword">pattern</span><span> </span><span class="annot"><a href="Css.Easing.html#Linear"><span class="hs-identifier hs-type">Linear</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><a href="Css.Easing.html#Easing"><span class="hs-identifier hs-type">Easing</span></a></span><span>
+</span><span id="line-36"></span><span class="hs-keyword">pattern</span><span> </span><span id="%24bLinear"><span id="%24mLinear"><span id="Linear"><span class="annot"><span class="annottext">$bLinear :: Easing
 $mLinear :: forall r. Easing -&gt; (Void# -&gt; r) -&gt; (Void# -&gt; r) -&gt; r
 </span><a href="Css.Easing.html#%24bLinear"><span class="hs-identifier hs-var hs-var hs-var">Linear</span></a></span></span></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><a href="Css.Easing.html#CubicBezier"><span class="hs-identifier hs-type">CubicBezier</span></a></span><span> </span><span class="hs-number">0.0</span><span> </span><span class="hs-number">0.0</span><span> </span><span class="hs-number">1</span><span> </span><span class="hs-number">1</span><span>
-</span><span id="line-35"></span><span>
-</span><span id="line-36"></span><span class="hs-keyword">pattern</span><span> </span><span class="annot"><a href="Css.Easing.html#EaseIn"><span class="hs-identifier hs-type">EaseIn</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><a href="Css.Easing.html#Easing"><span class="hs-identifier hs-type">Easing</span></a></span><span>
-</span><span id="line-37"></span><span class="hs-keyword">pattern</span><span> </span><span id="%24bEaseIn"><span id="%24mEaseIn"><span id="EaseIn"><span class="annot"><span class="annottext">$bEaseIn :: Easing
+</span><span id="line-37"></span><span>
+</span><span id="line-38"></span><span class="hs-keyword">pattern</span><span> </span><span class="annot"><a href="Css.Easing.html#EaseIn"><span class="hs-identifier hs-type">EaseIn</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><a href="Css.Easing.html#Easing"><span class="hs-identifier hs-type">Easing</span></a></span><span>
+</span><span id="line-39"></span><span class="hs-keyword">pattern</span><span> </span><span id="%24bEaseIn"><span id="%24mEaseIn"><span id="EaseIn"><span class="annot"><span class="annottext">$bEaseIn :: Easing
 $mEaseIn :: forall r. Easing -&gt; (Void# -&gt; r) -&gt; (Void# -&gt; r) -&gt; r
 </span><a href="Css.Easing.html#%24bEaseIn"><span class="hs-identifier hs-var hs-var hs-var">EaseIn</span></a></span></span></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><a href="Css.Easing.html#CubicBezier"><span class="hs-identifier hs-type">CubicBezier</span></a></span><span> </span><span class="hs-number">0.42</span><span> </span><span class="hs-number">0</span><span> </span><span class="hs-number">1</span><span> </span><span class="hs-number">1</span><span>
-</span><span id="line-38"></span><span>
-</span><span id="line-39"></span><span class="hs-keyword">pattern</span><span> </span><span class="annot"><a href="Css.Easing.html#EaseOut"><span class="hs-identifier hs-type">EaseOut</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><a href="Css.Easing.html#Easing"><span class="hs-identifier hs-type">Easing</span></a></span><span>
-</span><span id="line-40"></span><span class="hs-keyword">pattern</span><span> </span><span id="%24bEaseOut"><span id="%24mEaseOut"><span id="EaseOut"><span class="annot"><span class="annottext">$bEaseOut :: Easing
+</span><span id="line-40"></span><span>
+</span><span id="line-41"></span><span class="hs-keyword">pattern</span><span> </span><span class="annot"><a href="Css.Easing.html#EaseOut"><span class="hs-identifier hs-type">EaseOut</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><a href="Css.Easing.html#Easing"><span class="hs-identifier hs-type">Easing</span></a></span><span>
+</span><span id="line-42"></span><span class="hs-keyword">pattern</span><span> </span><span id="%24bEaseOut"><span id="%24mEaseOut"><span id="EaseOut"><span class="annot"><span class="annottext">$bEaseOut :: Easing
 $mEaseOut :: forall r. Easing -&gt; (Void# -&gt; r) -&gt; (Void# -&gt; r) -&gt; r
 </span><a href="Css.Easing.html#%24bEaseOut"><span class="hs-identifier hs-var hs-var hs-var">EaseOut</span></a></span></span></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><a href="Css.Easing.html#CubicBezier"><span class="hs-identifier hs-type">CubicBezier</span></a></span><span> </span><span class="hs-number">0</span><span> </span><span class="hs-number">0</span><span> </span><span class="hs-number">0.58</span><span> </span><span class="hs-number">1</span><span>
-</span><span id="line-41"></span><span>
-</span><span id="line-42"></span><span class="hs-keyword">pattern</span><span> </span><span class="annot"><a href="Css.Easing.html#EaseInOut"><span class="hs-identifier hs-type">EaseInOut</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><a href="Css.Easing.html#Easing"><span class="hs-identifier hs-type">Easing</span></a></span><span>
-</span><span id="line-43"></span><span class="hs-keyword">pattern</span><span> </span><span id="%24bEaseInOut"><span id="%24mEaseInOut"><span id="EaseInOut"><span class="annot"><span class="annottext">$bEaseInOut :: Easing
+</span><span id="line-43"></span><span>
+</span><span id="line-44"></span><span class="hs-keyword">pattern</span><span> </span><span class="annot"><a href="Css.Easing.html#EaseInOut"><span class="hs-identifier hs-type">EaseInOut</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><a href="Css.Easing.html#Easing"><span class="hs-identifier hs-type">Easing</span></a></span><span>
+</span><span id="line-45"></span><span class="hs-keyword">pattern</span><span> </span><span id="%24bEaseInOut"><span id="%24mEaseInOut"><span id="EaseInOut"><span class="annot"><span class="annottext">$bEaseInOut :: Easing
 $mEaseInOut :: forall r. Easing -&gt; (Void# -&gt; r) -&gt; (Void# -&gt; r) -&gt; r
 </span><a href="Css.Easing.html#%24bEaseInOut"><span class="hs-identifier hs-var hs-var hs-var">EaseInOut</span></a></span></span></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><a href="Css.Easing.html#CubicBezier"><span class="hs-identifier hs-type">CubicBezier</span></a></span><span> </span><span class="hs-number">0.42</span><span> </span><span class="hs-number">0</span><span> </span><span class="hs-number">0.58</span><span> </span><span class="hs-number">1</span><span>
-</span><span id="line-44"></span></pre></body></html>
+</span><span id="line-46"></span><span>
+</span><span id="line-47"></span><span class="hs-keyword">instance</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Default</span></span><span> </span><span class="annot"><a href="Css.Easing.html#Easing"><span class="hs-identifier hs-type">Easing</span></a></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-48"></span><span>    </span><span id="local-6989586621679081190"><span class="annot"><span class="annottext">def :: Easing
+</span><a href="#local-6989586621679081190"><span class="hs-identifier hs-var hs-var hs-var hs-var">def</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Easing
+</span><a href="Css.Easing.html#Ease"><span class="hs-identifier hs-var">Ease</span></a></span><span>
+</span><span id="line-49"></span><span>
+</span><span id="line-50"></span><span class="hs-keyword">instance</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Default</span></span><span> </span><span class="annot"><a href="Css.Easing.html#JumpTerm"><span class="hs-identifier hs-type">JumpTerm</span></a></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-51"></span><span>    </span><span id="local-6989586621679081188"><span class="annot"><span class="annottext">def :: JumpTerm
+</span><a href="#local-6989586621679081188"><span class="hs-identifier hs-var hs-var hs-var hs-var">def</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">JumpTerm
+</span><a href="Css.Easing.html#JumpNone"><span class="hs-identifier hs-var">JumpNone</span></a></span><span>
+</span><span id="line-52"></span><span>
+</span><span id="line-53"></span><span class="hs-comment">-- PostCSS</span><span>
+</span><span id="line-54"></span><span class="hs-keyword">pattern</span><span> </span><span class="annot"><a href="Css.Easing.html#EaseInSine"><span class="hs-identifier hs-type">EaseInSine</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><a href="Css.Easing.html#Easing"><span class="hs-identifier hs-type">Easing</span></a></span><span>
+</span><span id="line-55"></span><span class="hs-keyword">pattern</span><span> </span><span id="%24bEaseInSine"><span id="%24mEaseInSine"><span id="EaseInSine"><span class="annot"><span class="annottext">$bEaseInSine :: Easing
+$mEaseInSine :: forall r. Easing -&gt; (Void# -&gt; r) -&gt; (Void# -&gt; r) -&gt; r
+</span><a href="Css.Easing.html#%24bEaseInSine"><span class="hs-identifier hs-var hs-var hs-var">EaseInSine</span></a></span></span></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><a href="Css.Easing.html#CubicBezier"><span class="hs-identifier hs-type">CubicBezier</span></a></span><span> </span><span class="hs-number">0.12</span><span> </span><span class="hs-number">0</span><span> </span><span class="hs-number">0.39</span><span> </span><span class="hs-number">0</span><span>
+</span><span id="line-56"></span><span>
+</span><span id="line-57"></span><span class="hs-keyword">pattern</span><span> </span><span class="annot"><a href="Css.Easing.html#EaseOutSine"><span class="hs-identifier hs-type">EaseOutSine</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><a href="Css.Easing.html#Easing"><span class="hs-identifier hs-type">Easing</span></a></span><span>
+</span><span id="line-58"></span><span class="hs-keyword">pattern</span><span> </span><span id="%24bEaseOutSine"><span id="%24mEaseOutSine"><span id="EaseOutSine"><span class="annot"><span class="annottext">$bEaseOutSine :: Easing
+$mEaseOutSine :: forall r. Easing -&gt; (Void# -&gt; r) -&gt; (Void# -&gt; r) -&gt; r
+</span><a href="Css.Easing.html#%24bEaseOutSine"><span class="hs-identifier hs-var hs-var hs-var">EaseOutSine</span></a></span></span></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><a href="Css.Easing.html#CubicBezier"><span class="hs-identifier hs-type">CubicBezier</span></a></span><span> </span><span class="hs-number">0.61</span><span> </span><span class="hs-number">1</span><span> </span><span class="hs-number">0.88</span><span> </span><span class="hs-number">1</span><span>
+</span><span id="line-59"></span><span>
+</span><span id="line-60"></span><span class="hs-keyword">pattern</span><span> </span><span class="annot"><a href="Css.Easing.html#EaseInOutSine"><span class="hs-identifier hs-type">EaseInOutSine</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><a href="Css.Easing.html#Easing"><span class="hs-identifier hs-type">Easing</span></a></span><span>
+</span><span id="line-61"></span><span class="hs-keyword">pattern</span><span> </span><span id="%24bEaseInOutSine"><span id="%24mEaseInOutSine"><span id="EaseInOutSine"><span class="annot"><span class="annottext">$bEaseInOutSine :: Easing
+$mEaseInOutSine :: forall r. Easing -&gt; (Void# -&gt; r) -&gt; (Void# -&gt; r) -&gt; r
+</span><a href="Css.Easing.html#%24bEaseInOutSine"><span class="hs-identifier hs-var hs-var hs-var">EaseInOutSine</span></a></span></span></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><a href="Css.Easing.html#CubicBezier"><span class="hs-identifier hs-type">CubicBezier</span></a></span><span> </span><span class="hs-number">0.37</span><span> </span><span class="hs-number">0</span><span> </span><span class="hs-number">0.63</span><span> </span><span class="hs-number">1</span><span>
+</span><span id="line-62"></span><span>
+</span><span id="line-63"></span><span class="hs-keyword">pattern</span><span> </span><span class="annot"><a href="Css.Easing.html#EaseInQuad"><span class="hs-identifier hs-type">EaseInQuad</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><a href="Css.Easing.html#Easing"><span class="hs-identifier hs-type">Easing</span></a></span><span>
+</span><span id="line-64"></span><span class="hs-keyword">pattern</span><span> </span><span id="%24bEaseInQuad"><span id="%24mEaseInQuad"><span id="EaseInQuad"><span class="annot"><span class="annottext">$bEaseInQuad :: Easing
+$mEaseInQuad :: forall r. Easing -&gt; (Void# -&gt; r) -&gt; (Void# -&gt; r) -&gt; r
+</span><a href="Css.Easing.html#%24bEaseInQuad"><span class="hs-identifier hs-var hs-var hs-var">EaseInQuad</span></a></span></span></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><a href="Css.Easing.html#CubicBezier"><span class="hs-identifier hs-type">CubicBezier</span></a></span><span> </span><span class="hs-number">0.11</span><span> </span><span class="hs-number">0</span><span> </span><span class="hs-number">0.5</span><span> </span><span class="hs-number">0</span><span>
+</span><span id="line-65"></span><span>
+</span><span id="line-66"></span><span class="hs-keyword">pattern</span><span> </span><span class="annot"><a href="Css.Easing.html#EaseOutQuad"><span class="hs-identifier hs-type">EaseOutQuad</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><a href="Css.Easing.html#Easing"><span class="hs-identifier hs-type">Easing</span></a></span><span>
+</span><span id="line-67"></span><span class="hs-keyword">pattern</span><span> </span><span id="%24bEaseOutQuad"><span id="%24mEaseOutQuad"><span id="EaseOutQuad"><span class="annot"><span class="annottext">$bEaseOutQuad :: Easing
+$mEaseOutQuad :: forall r. Easing -&gt; (Void# -&gt; r) -&gt; (Void# -&gt; r) -&gt; r
+</span><a href="Css.Easing.html#%24bEaseOutQuad"><span class="hs-identifier hs-var hs-var hs-var">EaseOutQuad</span></a></span></span></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><a href="Css.Easing.html#CubicBezier"><span class="hs-identifier hs-type">CubicBezier</span></a></span><span> </span><span class="hs-number">0.5</span><span> </span><span class="hs-number">1</span><span> </span><span class="hs-number">0.89</span><span> </span><span class="hs-number">1</span><span>
+</span><span id="line-68"></span><span>
+</span><span id="line-69"></span><span class="hs-keyword">pattern</span><span> </span><span class="annot"><a href="Css.Easing.html#EaseInOutQuad"><span class="hs-identifier hs-type">EaseInOutQuad</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><a href="Css.Easing.html#Easing"><span class="hs-identifier hs-type">Easing</span></a></span><span>
+</span><span id="line-70"></span><span class="hs-keyword">pattern</span><span> </span><span id="%24bEaseInOutQuad"><span id="%24mEaseInOutQuad"><span id="EaseInOutQuad"><span class="annot"><span class="annottext">$bEaseInOutQuad :: Easing
+$mEaseInOutQuad :: forall r. Easing -&gt; (Void# -&gt; r) -&gt; (Void# -&gt; r) -&gt; r
+</span><a href="Css.Easing.html#%24bEaseInOutQuad"><span class="hs-identifier hs-var hs-var hs-var">EaseInOutQuad</span></a></span></span></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><a href="Css.Easing.html#CubicBezier"><span class="hs-identifier hs-type">CubicBezier</span></a></span><span> </span><span class="hs-number">0.45</span><span> </span><span class="hs-number">0</span><span> </span><span class="hs-number">0.55</span><span> </span><span class="hs-number">1</span><span>
+</span><span id="line-71"></span><span>
+</span><span id="line-72"></span><span class="hs-keyword">pattern</span><span> </span><span class="annot"><a href="Css.Easing.html#EaseInCubic"><span class="hs-identifier hs-type">EaseInCubic</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><a href="Css.Easing.html#Easing"><span class="hs-identifier hs-type">Easing</span></a></span><span>
+</span><span id="line-73"></span><span class="hs-keyword">pattern</span><span> </span><span id="%24bEaseInCubic"><span id="%24mEaseInCubic"><span id="EaseInCubic"><span class="annot"><span class="annottext">$bEaseInCubic :: Easing
+$mEaseInCubic :: forall r. Easing -&gt; (Void# -&gt; r) -&gt; (Void# -&gt; r) -&gt; r
+</span><a href="Css.Easing.html#%24bEaseInCubic"><span class="hs-identifier hs-var hs-var hs-var">EaseInCubic</span></a></span></span></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><a href="Css.Easing.html#CubicBezier"><span class="hs-identifier hs-type">CubicBezier</span></a></span><span> </span><span class="hs-number">0.32</span><span> </span><span class="hs-number">0</span><span> </span><span class="hs-number">0.67</span><span> </span><span class="hs-number">0</span><span>
+</span><span id="line-74"></span><span>
+</span><span id="line-75"></span><span class="hs-keyword">pattern</span><span> </span><span class="annot"><a href="Css.Easing.html#EaseOutCubic"><span class="hs-identifier hs-type">EaseOutCubic</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><a href="Css.Easing.html#Easing"><span class="hs-identifier hs-type">Easing</span></a></span><span>
+</span><span id="line-76"></span><span class="hs-keyword">pattern</span><span> </span><span id="%24bEaseOutCubic"><span id="%24mEaseOutCubic"><span id="EaseOutCubic"><span class="annot"><span class="annottext">$bEaseOutCubic :: Easing
+$mEaseOutCubic :: forall r. Easing -&gt; (Void# -&gt; r) -&gt; (Void# -&gt; r) -&gt; r
+</span><a href="Css.Easing.html#%24bEaseOutCubic"><span class="hs-identifier hs-var hs-var hs-var">EaseOutCubic</span></a></span></span></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><a href="Css.Easing.html#CubicBezier"><span class="hs-identifier hs-type">CubicBezier</span></a></span><span> </span><span class="hs-number">0.33</span><span> </span><span class="hs-number">1</span><span> </span><span class="hs-number">0.68</span><span> </span><span class="hs-number">1</span><span>
+</span><span id="line-77"></span><span>
+</span><span id="line-78"></span><span class="hs-keyword">pattern</span><span> </span><span class="annot"><a href="Css.Easing.html#EaseInOutCubic"><span class="hs-identifier hs-type">EaseInOutCubic</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><a href="Css.Easing.html#Easing"><span class="hs-identifier hs-type">Easing</span></a></span><span>
+</span><span id="line-79"></span><span class="hs-keyword">pattern</span><span> </span><span id="%24bEaseInOutCubic"><span id="%24mEaseInOutCubic"><span id="EaseInOutCubic"><span class="annot"><span class="annottext">$bEaseInOutCubic :: Easing
+$mEaseInOutCubic :: forall r. Easing -&gt; (Void# -&gt; r) -&gt; (Void# -&gt; r) -&gt; r
+</span><a href="Css.Easing.html#%24bEaseInOutCubic"><span class="hs-identifier hs-var hs-var hs-var">EaseInOutCubic</span></a></span></span></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><a href="Css.Easing.html#CubicBezier"><span class="hs-identifier hs-type">CubicBezier</span></a></span><span> </span><span class="hs-number">0.65</span><span> </span><span class="hs-number">0</span><span> </span><span class="hs-number">0.35</span><span> </span><span class="hs-number">1</span><span>
+</span><span id="line-80"></span><span>
+</span><span id="line-81"></span><span class="hs-keyword">pattern</span><span> </span><span class="annot"><a href="Css.Easing.html#EaseInQuart"><span class="hs-identifier hs-type">EaseInQuart</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><a href="Css.Easing.html#Easing"><span class="hs-identifier hs-type">Easing</span></a></span><span>
+</span><span id="line-82"></span><span class="hs-keyword">pattern</span><span> </span><span id="%24bEaseInQuart"><span id="%24mEaseInQuart"><span id="EaseInQuart"><span class="annot"><span class="annottext">$bEaseInQuart :: Easing
+$mEaseInQuart :: forall r. Easing -&gt; (Void# -&gt; r) -&gt; (Void# -&gt; r) -&gt; r
+</span><a href="Css.Easing.html#%24bEaseInQuart"><span class="hs-identifier hs-var hs-var hs-var">EaseInQuart</span></a></span></span></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><a href="Css.Easing.html#CubicBezier"><span class="hs-identifier hs-type">CubicBezier</span></a></span><span> </span><span class="hs-number">0.5</span><span> </span><span class="hs-number">0</span><span> </span><span class="hs-number">0.75</span><span> </span><span class="hs-number">0</span><span>
+</span><span id="line-83"></span><span>
+</span><span id="line-84"></span><span class="hs-keyword">pattern</span><span> </span><span class="annot"><a href="Css.Easing.html#EaseOutQuart"><span class="hs-identifier hs-type">EaseOutQuart</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><a href="Css.Easing.html#Easing"><span class="hs-identifier hs-type">Easing</span></a></span><span>
+</span><span id="line-85"></span><span class="hs-keyword">pattern</span><span> </span><span id="%24bEaseOutQuart"><span id="%24mEaseOutQuart"><span id="EaseOutQuart"><span class="annot"><span class="annottext">$bEaseOutQuart :: Easing
+$mEaseOutQuart :: forall r. Easing -&gt; (Void# -&gt; r) -&gt; (Void# -&gt; r) -&gt; r
+</span><a href="Css.Easing.html#%24bEaseOutQuart"><span class="hs-identifier hs-var hs-var hs-var">EaseOutQuart</span></a></span></span></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><a href="Css.Easing.html#CubicBezier"><span class="hs-identifier hs-type">CubicBezier</span></a></span><span> </span><span class="hs-number">0.25</span><span> </span><span class="hs-number">1</span><span> </span><span class="hs-number">0.5</span><span> </span><span class="hs-number">1</span><span>
+</span><span id="line-86"></span><span>
+</span><span id="line-87"></span><span class="hs-keyword">pattern</span><span> </span><span class="annot"><a href="Css.Easing.html#EaseInOutQuart"><span class="hs-identifier hs-type">EaseInOutQuart</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><a href="Css.Easing.html#Easing"><span class="hs-identifier hs-type">Easing</span></a></span><span>
+</span><span id="line-88"></span><span class="hs-keyword">pattern</span><span> </span><span id="%24bEaseInOutQuart"><span id="%24mEaseInOutQuart"><span id="EaseInOutQuart"><span class="annot"><span class="annottext">$bEaseInOutQuart :: Easing
+$mEaseInOutQuart :: forall r. Easing -&gt; (Void# -&gt; r) -&gt; (Void# -&gt; r) -&gt; r
+</span><a href="Css.Easing.html#%24bEaseInOutQuart"><span class="hs-identifier hs-var hs-var hs-var">EaseInOutQuart</span></a></span></span></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><a href="Css.Easing.html#CubicBezier"><span class="hs-identifier hs-type">CubicBezier</span></a></span><span> </span><span class="hs-number">0.76</span><span> </span><span class="hs-number">0</span><span> </span><span class="hs-number">0.24</span><span> </span><span class="hs-number">1</span><span>
+</span><span id="line-89"></span><span>
+</span><span id="line-90"></span><span class="hs-keyword">pattern</span><span> </span><span class="annot"><a href="Css.Easing.html#EaseInQuint"><span class="hs-identifier hs-type">EaseInQuint</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><a href="Css.Easing.html#Easing"><span class="hs-identifier hs-type">Easing</span></a></span><span>
+</span><span id="line-91"></span><span class="hs-keyword">pattern</span><span> </span><span id="%24bEaseInQuint"><span id="%24mEaseInQuint"><span id="EaseInQuint"><span class="annot"><span class="annottext">$bEaseInQuint :: Easing
+$mEaseInQuint :: forall r. Easing -&gt; (Void# -&gt; r) -&gt; (Void# -&gt; r) -&gt; r
+</span><a href="Css.Easing.html#%24bEaseInQuint"><span class="hs-identifier hs-var hs-var hs-var">EaseInQuint</span></a></span></span></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><a href="Css.Easing.html#CubicBezier"><span class="hs-identifier hs-type">CubicBezier</span></a></span><span> </span><span class="hs-number">0.64</span><span> </span><span class="hs-number">0</span><span> </span><span class="hs-number">0.78</span><span> </span><span class="hs-number">0</span><span>
+</span><span id="line-92"></span><span>
+</span><span id="line-93"></span><span class="hs-keyword">pattern</span><span> </span><span class="annot"><a href="Css.Easing.html#EaseOutQuint"><span class="hs-identifier hs-type">EaseOutQuint</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><a href="Css.Easing.html#Easing"><span class="hs-identifier hs-type">Easing</span></a></span><span>
+</span><span id="line-94"></span><span class="hs-keyword">pattern</span><span> </span><span id="%24bEaseOutQuint"><span id="%24mEaseOutQuint"><span id="EaseOutQuint"><span class="annot"><span class="annottext">$bEaseOutQuint :: Easing
+$mEaseOutQuint :: forall r. Easing -&gt; (Void# -&gt; r) -&gt; (Void# -&gt; r) -&gt; r
+</span><a href="Css.Easing.html#%24bEaseOutQuint"><span class="hs-identifier hs-var hs-var hs-var">EaseOutQuint</span></a></span></span></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><a href="Css.Easing.html#CubicBezier"><span class="hs-identifier hs-type">CubicBezier</span></a></span><span> </span><span class="hs-number">0.22</span><span> </span><span class="hs-number">1</span><span> </span><span class="hs-number">0.36</span><span> </span><span class="hs-number">1</span><span>
+</span><span id="line-95"></span><span>
+</span><span id="line-96"></span><span class="hs-keyword">pattern</span><span> </span><span class="annot"><a href="Css.Easing.html#EaseInOutQuint"><span class="hs-identifier hs-type">EaseInOutQuint</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><a href="Css.Easing.html#Easing"><span class="hs-identifier hs-type">Easing</span></a></span><span>
+</span><span id="line-97"></span><span class="hs-keyword">pattern</span><span> </span><span id="%24bEaseInOutQuint"><span id="%24mEaseInOutQuint"><span id="EaseInOutQuint"><span class="annot"><span class="annottext">$bEaseInOutQuint :: Easing
+$mEaseInOutQuint :: forall r. Easing -&gt; (Void# -&gt; r) -&gt; (Void# -&gt; r) -&gt; r
+</span><a href="Css.Easing.html#%24bEaseInOutQuint"><span class="hs-identifier hs-var hs-var hs-var">EaseInOutQuint</span></a></span></span></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><a href="Css.Easing.html#CubicBezier"><span class="hs-identifier hs-type">CubicBezier</span></a></span><span> </span><span class="hs-number">0.83</span><span> </span><span class="hs-number">0</span><span> </span><span class="hs-number">0.17</span><span> </span><span class="hs-number">1</span><span>
+</span><span id="line-98"></span><span>
+</span><span id="line-99"></span><span class="hs-keyword">pattern</span><span> </span><span class="annot"><a href="Css.Easing.html#EaseInExpo"><span class="hs-identifier hs-type">EaseInExpo</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><a href="Css.Easing.html#Easing"><span class="hs-identifier hs-type">Easing</span></a></span><span>
+</span><span id="line-100"></span><span class="hs-keyword">pattern</span><span> </span><span id="%24bEaseInExpo"><span id="%24mEaseInExpo"><span id="EaseInExpo"><span class="annot"><span class="annottext">$bEaseInExpo :: Easing
+$mEaseInExpo :: forall r. Easing -&gt; (Void# -&gt; r) -&gt; (Void# -&gt; r) -&gt; r
+</span><a href="Css.Easing.html#%24bEaseInExpo"><span class="hs-identifier hs-var hs-var hs-var">EaseInExpo</span></a></span></span></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><a href="Css.Easing.html#CubicBezier"><span class="hs-identifier hs-type">CubicBezier</span></a></span><span> </span><span class="hs-number">0.7</span><span> </span><span class="hs-number">0</span><span> </span><span class="hs-number">0.84</span><span> </span><span class="hs-number">0</span><span>
+</span><span id="line-101"></span><span>
+</span><span id="line-102"></span><span class="hs-keyword">pattern</span><span> </span><span class="annot"><a href="Css.Easing.html#EaseOutExpo"><span class="hs-identifier hs-type">EaseOutExpo</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><a href="Css.Easing.html#Easing"><span class="hs-identifier hs-type">Easing</span></a></span><span>
+</span><span id="line-103"></span><span class="hs-keyword">pattern</span><span> </span><span id="%24bEaseOutExpo"><span id="%24mEaseOutExpo"><span id="EaseOutExpo"><span class="annot"><span class="annottext">$bEaseOutExpo :: Easing
+$mEaseOutExpo :: forall r. Easing -&gt; (Void# -&gt; r) -&gt; (Void# -&gt; r) -&gt; r
+</span><a href="Css.Easing.html#%24bEaseOutExpo"><span class="hs-identifier hs-var hs-var hs-var">EaseOutExpo</span></a></span></span></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><a href="Css.Easing.html#CubicBezier"><span class="hs-identifier hs-type">CubicBezier</span></a></span><span> </span><span class="hs-number">0.16</span><span> </span><span class="hs-number">1</span><span> </span><span class="hs-number">0.3</span><span> </span><span class="hs-number">1</span><span>
+</span><span id="line-104"></span><span>
+</span><span id="line-105"></span><span class="hs-keyword">pattern</span><span> </span><span class="annot"><a href="Css.Easing.html#EaseInOutExpo"><span class="hs-identifier hs-type">EaseInOutExpo</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><a href="Css.Easing.html#Easing"><span class="hs-identifier hs-type">Easing</span></a></span><span>
+</span><span id="line-106"></span><span class="hs-keyword">pattern</span><span> </span><span id="%24bEaseInOutExpo"><span id="%24mEaseInOutExpo"><span id="EaseInOutExpo"><span class="annot"><span class="annottext">$bEaseInOutExpo :: Easing
+$mEaseInOutExpo :: forall r. Easing -&gt; (Void# -&gt; r) -&gt; (Void# -&gt; r) -&gt; r
+</span><a href="Css.Easing.html#%24bEaseInOutExpo"><span class="hs-identifier hs-var hs-var hs-var">EaseInOutExpo</span></a></span></span></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><a href="Css.Easing.html#CubicBezier"><span class="hs-identifier hs-type">CubicBezier</span></a></span><span> </span><span class="hs-number">0.87</span><span> </span><span class="hs-number">0</span><span> </span><span class="hs-number">0.13</span><span> </span><span class="hs-number">1</span><span>
+</span><span id="line-107"></span><span>
+</span><span id="line-108"></span><span class="hs-keyword">pattern</span><span> </span><span class="annot"><a href="Css.Easing.html#EaseInCirc"><span class="hs-identifier hs-type">EaseInCirc</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><a href="Css.Easing.html#Easing"><span class="hs-identifier hs-type">Easing</span></a></span><span>
+</span><span id="line-109"></span><span class="hs-keyword">pattern</span><span> </span><span id="%24bEaseInCirc"><span id="%24mEaseInCirc"><span id="EaseInCirc"><span class="annot"><span class="annottext">$bEaseInCirc :: Easing
+$mEaseInCirc :: forall r. Easing -&gt; (Void# -&gt; r) -&gt; (Void# -&gt; r) -&gt; r
+</span><a href="Css.Easing.html#%24bEaseInCirc"><span class="hs-identifier hs-var hs-var hs-var">EaseInCirc</span></a></span></span></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><a href="Css.Easing.html#CubicBezier"><span class="hs-identifier hs-type">CubicBezier</span></a></span><span> </span><span class="hs-number">0.55</span><span> </span><span class="hs-number">0</span><span> </span><span class="hs-number">1</span><span> </span><span class="hs-number">0.45</span><span>
+</span><span id="line-110"></span><span>
+</span><span id="line-111"></span><span class="hs-keyword">pattern</span><span> </span><span class="annot"><a href="Css.Easing.html#EaseOutCirc"><span class="hs-identifier hs-type">EaseOutCirc</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><a href="Css.Easing.html#Easing"><span class="hs-identifier hs-type">Easing</span></a></span><span>
+</span><span id="line-112"></span><span class="hs-keyword">pattern</span><span> </span><span id="%24bEaseOutCirc"><span id="%24mEaseOutCirc"><span id="EaseOutCirc"><span class="annot"><span class="annottext">$bEaseOutCirc :: Easing
+$mEaseOutCirc :: forall r. Easing -&gt; (Void# -&gt; r) -&gt; (Void# -&gt; r) -&gt; r
+</span><a href="Css.Easing.html#%24bEaseOutCirc"><span class="hs-identifier hs-var hs-var hs-var">EaseOutCirc</span></a></span></span></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><a href="Css.Easing.html#CubicBezier"><span class="hs-identifier hs-type">CubicBezier</span></a></span><span> </span><span class="hs-number">0</span><span> </span><span class="hs-number">0.55</span><span> </span><span class="hs-number">0.45</span><span> </span><span class="hs-number">1</span><span>
+</span><span id="line-113"></span><span>
+</span><span id="line-114"></span><span class="hs-keyword">pattern</span><span> </span><span class="annot"><a href="Css.Easing.html#EaseInOutCirc"><span class="hs-identifier hs-type">EaseInOutCirc</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><a href="Css.Easing.html#Easing"><span class="hs-identifier hs-type">Easing</span></a></span><span>
+</span><span id="line-115"></span><span class="hs-keyword">pattern</span><span> </span><span id="%24bEaseInOutCirc"><span id="%24mEaseInOutCirc"><span id="EaseInOutCirc"><span class="annot"><span class="annottext">$bEaseInOutCirc :: Easing
+$mEaseInOutCirc :: forall r. Easing -&gt; (Void# -&gt; r) -&gt; (Void# -&gt; r) -&gt; r
+</span><a href="Css.Easing.html#%24bEaseInOutCirc"><span class="hs-identifier hs-var hs-var hs-var">EaseInOutCirc</span></a></span></span></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><a href="Css.Easing.html#CubicBezier"><span class="hs-identifier hs-type">CubicBezier</span></a></span><span> </span><span class="hs-number">0.85</span><span> </span><span class="hs-number">0</span><span> </span><span class="hs-number">0.15</span><span> </span><span class="hs-number">1</span><span>
+</span><span id="line-116"></span><span>
+</span><span id="line-117"></span><span class="hs-keyword">pattern</span><span> </span><span class="annot"><a href="Css.Easing.html#EaseInBack"><span class="hs-identifier hs-type">EaseInBack</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><a href="Css.Easing.html#Easing"><span class="hs-identifier hs-type">Easing</span></a></span><span>
+</span><span id="line-118"></span><span class="hs-keyword">pattern</span><span> </span><span id="%24bEaseInBack"><span id="%24mEaseInBack"><span id="EaseInBack"><span class="annot"><span class="annottext">$bEaseInBack :: Easing
+$mEaseInBack :: forall r. Easing -&gt; (Void# -&gt; r) -&gt; (Void# -&gt; r) -&gt; r
+</span><a href="Css.Easing.html#%24bEaseInBack"><span class="hs-identifier hs-var hs-var hs-var">EaseInBack</span></a></span></span></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><a href="Css.Easing.html#CubicBezier"><span class="hs-identifier hs-type">CubicBezier</span></a></span><span> </span><span class="hs-number">0.36</span><span> </span><span class="hs-number">0</span><span> </span><span class="hs-number">0.66</span><span> </span><span class="hs-special">(</span><span class="hs-glyph">-</span><span class="hs-number">0.56</span><span class="hs-special">)</span><span>
+</span><span id="line-119"></span><span>
+</span><span id="line-120"></span><span class="hs-keyword">pattern</span><span> </span><span class="annot"><a href="Css.Easing.html#EaseOutBack"><span class="hs-identifier hs-type">EaseOutBack</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><a href="Css.Easing.html#Easing"><span class="hs-identifier hs-type">Easing</span></a></span><span>
+</span><span id="line-121"></span><span class="hs-keyword">pattern</span><span> </span><span id="%24bEaseOutBack"><span id="%24mEaseOutBack"><span id="EaseOutBack"><span class="annot"><span class="annottext">$bEaseOutBack :: Easing
+$mEaseOutBack :: forall r. Easing -&gt; (Void# -&gt; r) -&gt; (Void# -&gt; r) -&gt; r
+</span><a href="Css.Easing.html#%24bEaseOutBack"><span class="hs-identifier hs-var hs-var hs-var">EaseOutBack</span></a></span></span></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><a href="Css.Easing.html#CubicBezier"><span class="hs-identifier hs-type">CubicBezier</span></a></span><span> </span><span class="hs-number">0.34</span><span> </span><span class="hs-number">1.56</span><span> </span><span class="hs-number">0.64</span><span> </span><span class="hs-number">1</span><span>
+</span><span id="line-122"></span><span>
+</span><span id="line-123"></span><span class="hs-keyword">pattern</span><span> </span><span class="annot"><a href="Css.Easing.html#EaseInOutBack"><span class="hs-identifier hs-type">EaseInOutBack</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><a href="Css.Easing.html#Easing"><span class="hs-identifier hs-type">Easing</span></a></span><span>
+</span><span id="line-124"></span><span class="hs-keyword">pattern</span><span> </span><span id="%24bEaseInOutBack"><span id="%24mEaseInOutBack"><span id="EaseInOutBack"><span class="annot"><span class="annottext">$bEaseInOutBack :: Easing
+$mEaseInOutBack :: forall r. Easing -&gt; (Void# -&gt; r) -&gt; (Void# -&gt; r) -&gt; r
+</span><a href="Css.Easing.html#%24bEaseInOutBack"><span class="hs-identifier hs-var hs-var hs-var">EaseInOutBack</span></a></span></span></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><a href="Css.Easing.html#CubicBezier"><span class="hs-identifier hs-type">CubicBezier</span></a></span><span> </span><span class="hs-number">0.68</span><span> </span><span class="hs-special">(</span><span class="hs-glyph">-</span><span class="hs-number">0.6</span><span class="hs-special">)</span><span> </span><span class="hs-number">0.32</span><span> </span><span class="hs-number">1.6</span><span>
+</span><span id="line-125"></span></pre></body></html>
