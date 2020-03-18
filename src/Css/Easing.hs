@@ -115,10 +115,10 @@ pattern EaseInOutCirc :: Easing
 pattern EaseInOutCirc = CubicBezier 0.85 0 0.15 1
 
 pattern EaseInBack :: Easing
-pattern EaseInBack = CubicBezier 0.36 0 0.66 -0.56
+pattern EaseInBack = CubicBezier 0.36 0 0.66 (-0.56)
 
 pattern EaseOutBack :: Easing
 pattern EaseOutBack = CubicBezier 0.34 1.56 0.64 1
 
 pattern EaseInOutBack :: Easing
-pattern EaseInOutBack = CubicBezier 0.68 -0.6 0.32 1.6
+pattern EaseInOutBack = CubicBezier 0.68 (-0.6) 0.32 1.6
