@@ -1,6 +1,23 @@
 {-# LANGUAGE PatternSynonyms #-}
 
-module Css.Easing where
+module Css.Easing (
+    -- * Easing patterns
+      Easing(Steps, CubicBezier)
+    -- * Jump terms
+    , JumpTerm(JumpStart, JumpEnd, JumpNone, JumpBoth)
+    -- * Standard easing aliasses
+    , pattern Start, pattern End, pattern StepStart, pattern StepEnd
+    , pattern Ease, pattern Linear, pattern EaseIn, pattern EaseOut, pattern EaseInOut
+    -- * Post CSS easing aliasses
+    , pattern EaseInSine, pattern EaseOutSine, pattern EaseInOutSine
+    , pattern EaseInQuad, pattern EaseOutQuad, pattern EaseInOutQuad
+    , pattern EaseInCubic, pattern EaseOutCubic, pattern EaseInOutCubic
+    , pattern EaseInQuart, pattern EaseOutQuart, pattern EaseInOutQuart
+    , pattern EaseInQuint, pattern EaseOutQuint, pattern EaseInOutQuint
+    , pattern EaseInExpo, pattern EaseOutExpo, pattern EaseInOutExpo
+    , pattern EaseInCirc, pattern EaseOutCirc, pattern EaseInOutCirc
+    , pattern EaseInBack, pattern EaseOutBack, pattern EaseInOutBack
+  ) where
 
 import Data.Scientific
 import Data.Default(Default(def))
