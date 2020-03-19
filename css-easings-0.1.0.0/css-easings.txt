@@ -78,5 +78,6 @@ instance GHC.Classes.Eq Css.Easing.JumpTerm
 instance GHC.Enum.Enum Css.Easing.JumpTerm
 instance GHC.Enum.Bounded Css.Easing.JumpTerm
 instance Data.Default.Class.Default Css.Easing.Easing
+instance Test.QuickCheck.Arbitrary.Arbitrary Css.Easing.Easing
 instance Data.Default.Class.Default Css.Easing.JumpTerm
 instance Test.QuickCheck.Arbitrary.Arbitrary Css.Easing.JumpTerm
