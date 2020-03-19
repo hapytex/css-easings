@@ -9,9 +9,26 @@ module Css.Easing
 data Easing
 Steps :: Int -> JumpTerm -> Easing
 CubicBezier :: Scientific -> Scientific -> Scientific -> Scientific -> Easing
+
+-- | Constructs a <a>Steps</a> given the first item is strictly greater
+--   than zero. If that is the case, it returns the <a>Easing</a> wrapped
+--   in a <a>Just</a>, otherwise a <a>Nothing</a> is returned.
 steps :: Int -> JumpTerm -> Maybe Easing
+
+-- | Construct a <a>Steps</a> given the first item is strictly greater than
+--   ero. If that is the case, it returns the <a>Easing</a> object,
+--   otherwise it will raise an error.
 steps' :: Int -> JumpTerm -> Easing
+
+-- | Constructs a <a>CubicBezier</a> given that the first and third value
+--   are between <tt>0.0</tt> and <tt>1.0</tt>. If that is the case, it
+--   returns a <a>Just</a> that wraps the <a>Easing</a>. Otherwise
+--   <a>Nothing</a> is returned.
 cubicBezier :: Scientific -> Scientific -> Scientific -> Scientific -> Maybe Easing
+
+-- | Constructs a <a>CubicBezier</a> given the first and third value are
+--   between <tt>0.0</tt> and <tt>1.0</tt>. If this is the case, it returns
+--   that <a>Easing</a>, otherwise it will raise an error.
 cubicBezier' :: Scientific -> Scientific -> Scientific -> Scientific -> Easing
 data JumpTerm
 JumpStart :: JumpTerm
@@ -62,3 +79,4 @@ instance GHC.Enum.Enum Css.Easing.JumpTerm
 instance GHC.Enum.Bounded Css.Easing.JumpTerm
 instance Data.Default.Class.Default Css.Easing.Easing
 instance Data.Default.Class.Default Css.Easing.JumpTerm
+instance Test.QuickCheck.Arbitrary.Arbitrary Css.Easing.JumpTerm
