@@ -23,8 +23,9 @@ module Css.Easing (
   ) where
 
 import Data.Default(Default(def))
-import Data.Scientific(Scientific)
+import Data.Scientific(Scientific, scientific)
 
+import Test.QuickCheck(Gen, choose, oneof)
 import Test.QuickCheck.Arbitrary(Arbitrary(arbitrary), arbitraryBoundedEnum)
 
 data Easing
@@ -177,6 +178,17 @@ pattern EaseOutBack = CubicBezier 0.34 1.56 0.64 1
 
 pattern EaseInOutBack :: Easing
 pattern EaseInOutBack = CubicBezier 0.68 (-0.6) 0.32 1.6
+
+_genS :: Gen Scientific
+_genS = scientific <$> arbitrary <*> arbitrary
+
+_genBoundedS :: Gen Scientific
+_genBoundedS = do
+    e <- fmap abs arbitrary
+    (`scientific` (-e)) <$> choose (0, 10^e)
+
+instance Arbitrary Easing where
+    arbitrary = oneof [Steps <$> choose (0, maxBound) <*> arbitrary, CubicBezier <$> _genBoundedS <*> _genS <*> _genBoundedS <*> _genS]
 
 instance Arbitrary JumpTerm where
     arbitrary = arbitraryBoundedEnum
