@@ -9,6 +9,10 @@ module Css.Easing
 data Easing
 Steps :: Int -> JumpTerm -> Easing
 CubicBezier :: Scientific -> Scientific -> Scientific -> Scientific -> Easing
+steps :: Int -> JumpTerm -> Maybe Easing
+steps' :: Int -> JumpTerm -> Easing
+cubicBezier :: Scientific -> Scientific -> Scientific -> Scientific -> Maybe Easing
+cubicBezier' :: Scientific -> Scientific -> Scientific -> Scientific -> Easing
 data JumpTerm
 JumpStart :: JumpTerm
 JumpEnd :: JumpTerm
