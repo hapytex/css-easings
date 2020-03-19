@@ -3,10 +3,13 @@
 module Css.Easing (
     -- * Easing patterns
       Easing(Steps, CubicBezier)
+    , steps, steps'
+    , cubicBezier, cubicBezier'
     -- * Jump terms
     , JumpTerm(JumpStart, JumpEnd, JumpNone, JumpBoth)
+    , pattern Start, pattern End
     -- * Standard easing aliasses
-    , pattern Start, pattern End, pattern StepStart, pattern StepEnd
+    , pattern StepStart, pattern StepEnd
     , pattern Ease, pattern Linear, pattern EaseIn, pattern EaseOut, pattern EaseInOut
     -- * Post CSS easing aliasses
     , pattern EaseInSine, pattern EaseOutSine, pattern EaseInOutSine
@@ -26,6 +29,26 @@ data Easing
     = Steps Int JumpTerm
     | CubicBezier Scientific Scientific Scientific Scientific
     deriving (Eq, Ord, Show)
+
+cubicBezier :: Scientific -> Scientific -> Scientific -> Scientific -> Maybe Easing
+cubicBezier p1 p2 p3
+    | _valid p1 && _valid p2 = Just . CubicBezier p1 p2 p3
+    | otherwise = const Nothing
+    where _valid x = 0 <= x && x <= 1
+
+cubicBezier' :: Scientific -> Scientific -> Scientific -> Scientific -> Easing
+cubicBezier' p1 p2 p3 p4
+    | Just y <- cubicBezier p1 p2 p3 p4 = y
+    | otherwise = error "The first and third value needs to be between 0 and 1."
+
+steps :: Int -> JumpTerm -> Maybe Easing
+steps n | n > 0 = Just . Steps n
+        | otherwise = const Nothing
+
+steps' :: Int -> JumpTerm -> Easing
+steps' n | n > 0 = Steps n
+         | otherwise = error "The number of steps should be larger than 0."
+
 
 data JumpTerm
     = JumpStart
@@ -50,7 +73,7 @@ pattern Ease :: Easing
 pattern Ease = CubicBezier 0.25 0.1 0.25 1
 
 pattern Linear :: Easing
-pattern Linear = CubicBezier 0.0 0.0 1 1
+pattern Linear = CubicBezier 0 0 1 1
 
 pattern EaseIn :: Easing
 pattern EaseIn = CubicBezier 0.42 0 1 1
