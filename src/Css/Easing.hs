@@ -22,33 +22,15 @@ module Css.Easing (
     , pattern EaseInBack, pattern EaseOutBack, pattern EaseInOutBack
   ) where
 
-import Data.Scientific
 import Data.Default(Default(def))
+import Data.Scientific(Scientific)
+
+import Test.QuickCheck.Arbitrary(Arbitrary(arbitrary), arbitraryBoundedEnum)
 
 data Easing
     = Steps Int JumpTerm
     | CubicBezier Scientific Scientific Scientific Scientific
     deriving (Eq, Ord, Show)
-
-cubicBezier :: Scientific -> Scientific -> Scientific -> Scientific -> Maybe Easing
-cubicBezier p1 p2 p3
-    | _valid p1 && _valid p2 = Just . CubicBezier p1 p2 p3
-    | otherwise = const Nothing
-    where _valid x = 0 <= x && x <= 1
-
-cubicBezier' :: Scientific -> Scientific -> Scientific -> Scientific -> Easing
-cubicBezier' p1 p2 p3 p4
-    | Just y <- cubicBezier p1 p2 p3 p4 = y
-    | otherwise = error "The first and third value needs to be between 0 and 1."
-
-steps :: Int -> JumpTerm -> Maybe Easing
-steps n | n > 0 = Just . Steps n
-        | otherwise = const Nothing
-
-steps' :: Int -> JumpTerm -> Easing
-steps' n | n > 0 = Steps n
-         | otherwise = error "The number of steps should be larger than 0."
-
 
 data JumpTerm
     = JumpStart
@@ -56,6 +38,39 @@ data JumpTerm
     | JumpNone
     | JumpBoth
     deriving (Bounded, Enum, Eq, Ord, Read, Show)
+
+_validPoint :: Scientific -> Bool
+_validPoint x = 0.0 <= x && x <= 1.0
+
+-- | Constructs a 'CubicBezier' given that the first and third value are between @0.0@
+-- and @1.0@. If that is the case, it returns a 'Just' that wraps the 'Easing'.
+-- Otherwise 'Nothing' is returned.
+cubicBezier :: Scientific -> Scientific -> Scientific -> Scientific -> Maybe Easing
+cubicBezier p1 p2 p3
+    | _validPoint p1 && _validPoint p2 = Just . CubicBezier p1 p2 p3
+    | otherwise = const Nothing
+
+-- | Constructs a 'CubicBezier' given the first and third value are between @0.0@
+-- and @1.0@. If this is the case, it returns that 'Easing', otherwise it will
+-- raise an error.
+cubicBezier' :: Scientific -> Scientific -> Scientific -> Scientific -> Easing
+cubicBezier' p1 p2 p3
+    | _validPoint p1 && _validPoint p3 = CubicBezier p1 p2 p3
+    | otherwise = error "The first and third value needs to be between 0 and 1."
+
+-- | Constructs a 'Steps' given the first item is strictly greater than zero. If
+-- that is the case, it returns the 'Easing' wrapped in a 'Just', otherwise a
+-- 'Nothing' is returned.
+steps :: Int -> JumpTerm -> Maybe Easing
+steps n | n > 0 = Just . Steps n
+        | otherwise = const Nothing
+
+-- | Construct a 'Steps' given the first item is strictly greater than ero. If
+-- that is the case, it returns the 'Easing' object, otherwise it will raise an
+-- error.
+steps' :: Int -> JumpTerm -> Easing
+steps' n | n > 0 = Steps n
+         | otherwise = error "The number of steps should be larger than 0."
 
 pattern Start :: JumpTerm
 pattern Start = JumpStart
@@ -162,3 +177,6 @@ pattern EaseOutBack = CubicBezier 0.34 1.56 0.64 1
 
 pattern EaseInOutBack :: Easing
 pattern EaseInOutBack = CubicBezier 0.68 (-0.6) 0.32 1.6
+
+instance Arbitrary JumpTerm where
+    arbitrary = arbitraryBoundedEnum
