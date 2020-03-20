@@ -44,29 +44,96 @@ pattern Linear :: Easing
 pattern EaseIn :: Easing
 pattern EaseOut :: Easing
 pattern EaseInOut :: Easing
+
+-- | A pattern that defines the PostCSS easing pattern <tt>easeInSine</tt>.
 pattern EaseInSine :: Easing
+
+-- | A pattern that defines the PostCSS easing pattern
+--   <tt>easeOutSine</tt>.
 pattern EaseOutSine :: Easing
+
+-- | A pattern that defines the PostCSS easing pattern
+--   <tt>easeInOutSine</tt>.
 pattern EaseInOutSine :: Easing
+
+-- | A pattern that defines the PostCSS easing pattern <tt>easeInQuad</tt>.
 pattern EaseInQuad :: Easing
+
+-- | A pattern that defines the PostCSS easing pattern
+--   <tt>easeOutQuad</tt>.
 pattern EaseOutQuad :: Easing
+
+-- | A pattern that defines the PostCSS easing pattern
+--   <tt>easeInOutQuad</tt>.
 pattern EaseInOutQuad :: Easing
+
+-- | A pattern that defines the PostCSS easing pattern
+--   <tt>easeInCubic</tt>.
 pattern EaseInCubic :: Easing
+
+-- | A pattern that defines the PostCSS easing pattern
+--   <tt>easeOutCubic</tt>.
 pattern EaseOutCubic :: Easing
+
+-- | A pattern that defines the PostCSS easing pattern
+--   <tt>easeInOutCubic</tt>.
 pattern EaseInOutCubic :: Easing
+
+-- | A pattern that defines the PostCSS easing pattern
+--   <tt>easeInQuart</tt>.
 pattern EaseInQuart :: Easing
+
+-- | A pattern that defines the PostCSS easing pattern
+--   <tt>easeOutQuart</tt>.
 pattern EaseOutQuart :: Easing
+
+-- | A pattern that defines the PostCSS easing pattern
+--   <tt>easeInOutQuart</tt>.
 pattern EaseInOutQuart :: Easing
+
+-- | A pattern that defines the PostCSS easing pattern
+--   <tt>easeInQuint</tt>.
 pattern EaseInQuint :: Easing
+
+-- | A pattern that defines the PostCSS easing pattern
+--   <tt>easeOutQuint</tt>.
 pattern EaseOutQuint :: Easing
+
+-- | A pattern that defines the PostCSS easing pattern
+--   <tt>easeInOutQuint</tt>.
 pattern EaseInOutQuint :: Easing
+
+-- | A pattern that defines the PostCSS easing pattern <tt>easeInExpo</tt>.
 pattern EaseInExpo :: Easing
+
+-- | A pattern that defines the PostCSS easing pattern
+--   <tt>easeOutExpo</tt>.
 pattern EaseOutExpo :: Easing
+
+-- | A pattern that defines the PostCSS easing pattern
+--   <tt>easeInOutExpo</tt>.
 pattern EaseInOutExpo :: Easing
+
+-- | A pattern that defines the PostCSS easing pattern <tt>easeInCirc</tt>.
 pattern EaseInCirc :: Easing
+
+-- | A pattern that defines the PostCSS easing pattern
+--   <tt>easeOutCirc</tt>.
 pattern EaseOutCirc :: Easing
+
+-- | A pattern that defines the PostCSS easing pattern
+--   <tt>easeInOutCirc</tt>.
 pattern EaseInOutCirc :: Easing
+
+-- | A pattern that defines the PostCSS easing pattern <tt>easeInBack</tt>.
 pattern EaseInBack :: Easing
+
+-- | A pattern that defines the PostCSS easing pattern
+--   <tt>easeOutBack</tt>.
 pattern EaseOutBack :: Easing
+
+-- | A pattern that defines the PostCSS easing pattern
+--   <tt>easeInOutBack</tt>.
 pattern EaseInOutBack :: Easing
 instance GHC.Show.Show Css.Easing.Easing
 instance GHC.Classes.Ord Css.Easing.Easing
