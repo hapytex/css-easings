@@ -35,14 +35,41 @@ JumpStart :: JumpTerm
 JumpEnd :: JumpTerm
 JumpNone :: JumpTerm
 JumpBoth :: JumpTerm
+
+-- | A pattern that defines the css alias <tt>start</tt> that is equal to
+--   <tt>jump-start</tt>.
 pattern Start :: JumpTerm
+
+-- | A pattern that defines the css alias <tt>end</tt> that is equal to
+--   <tt>jump-end</tt>.
 pattern End :: JumpTerm
+
+-- | A pattern that defines the css alias <tt>step-start</tt> that is equal
+--   to <tt>steps(1, jump-start)</tt>.
 pattern StepStart :: Easing
+
+-- | A pattern that defines the css alias <tt>step-end</tt> that is equal
+--   to <tt>steps(1, jump-end)</tt>.
 pattern StepEnd :: Easing
+
+-- | A pattern that defines the css alias <tt>ease</tt> that is equal to
+--   <tt>cubic-bezier(0.25, 0.1, 0.25, 1)</tt>.
 pattern Ease :: Easing
+
+-- | A pattern that defines the css alias <tt>linear</tt> that is equal to
+--   <tt>cubic-bezier(0, 0, 1, 1)</tt>.
 pattern Linear :: Easing
+
+-- | A pattern that defines the css alias <tt>ease-in</tt> that is equal to
+--   <tt>cubic-bezier(0.42, 0, 1, 1)</tt>.
 pattern EaseIn :: Easing
+
+-- | A pattern that defines the css alias <tt>ease-out</tt> that is equal
+--   to <tt>cubic-bezier(0, 0, 0.58, 1)</tt>.
 pattern EaseOut :: Easing
+
+-- | A pattern that defines the css alias <tt>ease-in-out</tt> that is
+--   equal to <tt>cubic-bezier(0.42, 0, 0.58, 1)</tt>.
 pattern EaseInOut :: Easing
 
 -- | A pattern that defines the PostCSS easing pattern <tt>easeInSine</tt>.
