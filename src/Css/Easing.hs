@@ -11,7 +11,7 @@ module Css.Easing (
     -- * Standard easing aliasses
     , pattern StepStart, pattern StepEnd
     , pattern Ease, pattern Linear, pattern EaseIn, pattern EaseOut, pattern EaseInOut
-    -- * Post CSS easing aliasses
+    -- * PostCSS easing aliasses
     , pattern EaseInSine, pattern EaseOutSine, pattern EaseInOutSine
     , pattern EaseInQuad, pattern EaseOutQuad, pattern EaseInOutQuad
     , pattern EaseInCubic, pattern EaseOutCubic, pattern EaseInOutCubic
@@ -27,6 +27,10 @@ import Data.Scientific(Scientific, scientific)
 
 import Test.QuickCheck(Gen, choose, oneof)
 import Test.QuickCheck.Arbitrary(Arbitrary(arbitrary), arbitraryBoundedEnum)
+
+-- references:
+--   https://developer.mozilla.org/en-US/docs/Web/CSS/transition-timing-function
+--   https://easings.net/en
 
 data Easing
     = Steps Int JumpTerm
@@ -73,30 +77,39 @@ steps' :: Int -> JumpTerm -> Easing
 steps' n | n > 0 = Steps n
          | otherwise = error "The number of steps should be larger than 0."
 
+-- | A pattern that defines the css alias @start@ that is equal to @jump-start@.
 pattern Start :: JumpTerm
 pattern Start = JumpStart
 
+-- | A pattern that defines the css alias @end@ that is equal to @jump-end@.
 pattern End :: JumpTerm
 pattern End = JumpEnd
 
+-- | A pattern that defines the css alias @step-start@ that is equal to @steps(1, jump-start)@.
 pattern StepStart :: Easing
 pattern StepStart = Steps 1 JumpStart
 
+-- | A pattern that defines the css alias @step-end@ that is equal to @steps(1, jump-end)@.
 pattern StepEnd :: Easing
 pattern StepEnd = Steps 1 JumpEnd
 
+-- | A pattern that defines the css alias @ease@ that is equal to @cubic-bezier(0.25, 0.1, 0.25, 1)@.
 pattern Ease :: Easing
 pattern Ease = CubicBezier 0.25 0.1 0.25 1
 
+-- | A pattern that defines the css alias @linear@ that is equal to @cubic-bezier(0, 0, 1, 1)@.
 pattern Linear :: Easing
 pattern Linear = CubicBezier 0 0 1 1
 
+-- | A pattern that defines the css alias @ease-in@ that is equal to @cubic-bezier(0.42, 0, 1, 1)@.
 pattern EaseIn :: Easing
 pattern EaseIn = CubicBezier 0.42 0 1 1
 
+-- | A pattern that defines the css alias @ease-out@ that is equal to @cubic-bezier(0, 0, 0.58, 1)@.
 pattern EaseOut :: Easing
 pattern EaseOut = CubicBezier 0 0 0.58 1
 
+-- | A pattern that defines the css alias @ease-in-out@ that is equal to @cubic-bezier(0.42, 0, 0.58, 1)@.
 pattern EaseInOut :: Easing
 pattern EaseInOut = CubicBezier 0.42 0 0.58 1
 
