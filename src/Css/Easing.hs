@@ -32,16 +32,29 @@ import Test.QuickCheck.Arbitrary(Arbitrary(arbitrary), arbitraryBoundedEnum)
 --   https://developer.mozilla.org/en-US/docs/Web/CSS/transition-timing-function
 --   https://easings.net/en
 
+-- | A type that describes the different types of css-easings (also known as
+-- "transition timing functions"). There are basically two modes: 'Steps' and
+-- 'CubicBezier's.
 data Easing
     = Steps Int JumpTerm
+    -- ^ Displays the transition along n stops along the transition, displaying each stop for
+    -- equal lengths of time. For example, if n is 5,  there are 5 steps. Whether the transition
+    -- holds temporarily at 0%, 20%, 40%, 60% and 80%, on the 20%, 40%, 60%, 80% and 100%, or
+    -- makes 5 stops between the 0% and 100% along the transition, or makes 5 stops including
+    -- the 0% and 100% marks (on the 0%, 25%, 50%, 75%, and 100%) depends on which of the
+    -- 'JumpTerm' is used.
     | CubicBezier Scientific Scientific Scientific Scientific
+    -- ^ An author defined cubic-Bezier curve, where the p1 and p3 values must
+    -- be in the range of 0 to 1.
     deriving (Eq, Ord, Show)
 
+-- | A type that is used to describe how the jumps are done in a 'Steps'
+-- construction.
 data JumpTerm
-    = JumpStart
-    | JumpEnd
-    | JumpNone
-    | JumpBoth
+    = JumpStart -- ^ In css this is denoted as @jump-start@. This denotes a left-continuous function, so that the first jump happens when the transition begins.
+    | JumpEnd -- ^ In css this is denoted as @jump-end@. Denotes a right-continuous function, so that the last jump happens when the animation ends.
+    | JumpNone -- ^ In css this is denoted as @jump-none@. There is no jump on either end. Instead, holding at both the 0% mark and the 100% mark, each for 1/n of the duration.
+    | JumpBoth -- ^ In css this is denoted as @jump-both@. Includes pauses at both the 0% and 100% marks, effectively adding a step during the transition time.
     deriving (Bounded, Enum, Eq, Ord, Read, Show)
 
 _validPoint :: Scientific -> Bool
