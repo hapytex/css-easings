@@ -207,5 +207,11 @@ instance GHC.Enum.Enum Css.Easing.JumpTerm
 instance GHC.Enum.Bounded Css.Easing.JumpTerm
 instance Data.Default.Class.Default Css.Easing.Easing
 instance Test.QuickCheck.Arbitrary.Arbitrary Css.Easing.Easing
+instance Text.Blaze.ToMarkup Css.Easing.Easing
+instance Text.Julius.ToJavascript Css.Easing.Easing
+instance Data.Aeson.Types.ToJSON.ToJSON Css.Easing.Easing
 instance Data.Default.Class.Default Css.Easing.JumpTerm
 instance Test.QuickCheck.Arbitrary.Arbitrary Css.Easing.JumpTerm
+instance Text.Blaze.ToMarkup Css.Easing.JumpTerm
+instance Text.Julius.ToJavascript Css.Easing.JumpTerm
+instance Data.Aeson.Types.ToJSON.ToJSON Css.Easing.JumpTerm
