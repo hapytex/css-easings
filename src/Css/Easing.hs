@@ -1,4 +1,4 @@
-{-# LANGUAGE PatternSynonyms #-}
+{-# LANGUAGE OverloadedStrings, PatternSynonyms #-}
 
 module Css.Easing (
     -- * Easing patterns
@@ -22,8 +22,13 @@ module Css.Easing (
     , pattern EaseInBack, pattern EaseOutBack, pattern EaseInOutBack
   ) where
 
+import Data.Aeson(Value(String), ToJSON(toJSON))
 import Data.Default(Default(def))
 import Data.Scientific(Scientific, scientific)
+import Data.Text(Text, intercalate, pack)
+
+import Text.Blaze(ToMarkup(toMarkup), text)
+import Text.Julius(ToJavascript(toJavascript))
 
 import Test.QuickCheck(Gen, choose, oneof)
 import Test.QuickCheck.Arbitrary(Arbitrary(arbitrary), arbitraryBoundedEnum)
@@ -48,6 +53,10 @@ data Easing
     -- be in the range of 0 to 1.
     deriving (Eq, Ord, Show)
 
+_easingToCss :: Easing -> Text
+_easingToCss (Steps n j) = "steps(" <> pack (show n) <> ", " <> _jumpTermToCss j <> ")"
+_easingToCss (CubicBezier p1 p2 p3 p4) = "cubic-bezier(" <> intercalate ", " (map (pack . show) [p1, p2, p3, p4]) <> ")"
+
 -- | A type that is used to describe how the jumps are done in a 'Steps'
 -- construction.
 data JumpTerm
@@ -56,6 +65,12 @@ data JumpTerm
     | JumpNone -- ^ In css this is denoted as @jump-none@. There is no jump on either end. Instead, holding at both the 0% mark and the 100% mark, each for 1/n of the duration.
     | JumpBoth -- ^ In css this is denoted as @jump-both@. Includes pauses at both the 0% and 100% marks, effectively adding a step during the transition time.
     deriving (Bounded, Enum, Eq, Ord, Read, Show)
+
+_jumpTermToCss :: JumpTerm -> Text
+_jumpTermToCss JumpStart = "jump-start"
+_jumpTermToCss JumpEnd = "jump-end"
+_jumpTermToCss JumpNone = "jump-none"
+_jumpTermToCss JumpBoth = "jump-both"
 
 _validPoint :: Scientific -> Bool
 _validPoint x = 0.0 <= x && x <= 1.0
@@ -237,8 +252,31 @@ _genBoundedS = do
     e <- fmap abs arbitrary
     (`scientific` (-e)) <$> choose (0, 10^e)
 
+
+-- Arbitrary instances
 instance Arbitrary Easing where
     arbitrary = oneof [Steps <$> choose (0, maxBound) <*> arbitrary, CubicBezier <$> _genBoundedS <*> _genS <*> _genBoundedS <*> _genS]
 
 instance Arbitrary JumpTerm where
     arbitrary = arbitraryBoundedEnum
+
+-- ToMarkup instances
+instance ToMarkup Easing where
+    toMarkup = text . _easingToCss
+
+instance ToMarkup JumpTerm where
+    toMarkup = text . _jumpTermToCss
+
+-- ToJavascript instances
+instance ToJavascript Easing where
+    toJavascript = toJavascript . _easingToCss
+
+instance ToJavascript JumpTerm where
+    toJavascript = toJavascript . _jumpTermToCss
+
+-- ToJSON instances
+instance ToJSON Easing where
+    toJSON = String . _easingToCss
+
+instance ToJSON JumpTerm where
+    toJSON = String . _jumpTermToCss
