@@ -1,5 +1,15 @@
 {-# LANGUAGE OverloadedStrings, PatternSynonyms #-}
 
+{-|
+Module      : Css.Easing
+Description : Css easing strings in Haskell.
+Maintainer  : hapytexeu+gh@gmail.com
+Stability   : experimental
+Portability : POSIX
+
+A module to define css easing strings. These can be used in Julius, JSON, etc. templates to limit the easings to valid ones.
+-}
+
 module Css.Easing (
     -- * Easing patterns
       Easing(Steps, CubicBezier)
@@ -55,11 +65,18 @@ data Easing
     -- be in the range of 0 to 1.
     deriving (Eq, Ord, Show)
 
-easingToCss :: Easing -> Text
+-- | Convert an 'Easing' to its css counterpart. The css aliases like
+-- @"steps-start"@ are /not/ checked. Therefore, only strings like "@steps(..)"
+-- and @cubic-bezier(..)@ are returned.
+easingToCss :: Easing -- ^ The given 'Easing' to convert.
+    -> Text -- ^ The css counterpart of the given 'Easing'.
 easingToCss (Steps n j) = "steps(" <> pack (show n) <> ", " <> jumpTermToCss j <> ")"
 easingToCss (CubicBezier p1 p2 p3 p4) = "cubic-bezier(" <> intercalate ", " (map (pack . show) [p1, p2, p3, p4]) <> ")"
 
-easingToCssWithCssAliasses :: Easing -> Text
+-- | Convert an 'Easing' to its css counterpart. The css aliases like
+-- @"steps-start"@ are checked, and if they match, the alias is returned.
+easingToCssWithCssAliasses :: Easing -- ^ The given 'Easing' to convert.
+    -> Text  -- ^ The css counterpart of the given 'Easing'.
 easingToCssWithCssAliasses StepsStart = "steps-start"
 easingToCssWithCssAliasses StepsEnd = "steps-end"
 easingToCssWithCssAliasses Linear = "linear"
@@ -78,7 +95,10 @@ data JumpTerm
     | JumpBoth -- ^ In css this is denoted as @jump-both@. Includes pauses at both the 0% and 100% marks, effectively adding a step during the transition time.
     deriving (Bounded, Enum, Eq, Ord, Read, Show)
 
-jumpTermToCss :: JumpTerm -> Text
+-- | Convert a 'JumpTerm' to its css counterpart. So 'JumpStart' is for example
+-- converted to @"jump-start"@.
+jumpTermToCss :: JumpTerm -- ^ The 'JumpTerm' to convert.
+    -> Text -- ^ The css counterpart of the given 'JumpTerm'.
 jumpTermToCss JumpStart = "jump-start"
 jumpTermToCss JumpEnd = "jump-end"
 jumpTermToCss JumpNone = "jump-none"
