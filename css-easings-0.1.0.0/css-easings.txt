@@ -45,6 +45,9 @@ cubicBezier :: Scientific -> Scientific -> Scientific -> Scientific -> Maybe Eas
 --   between <tt>0.0</tt> and <tt>1.0</tt>. If this is the case, it returns
 --   that <a>Easing</a>, otherwise it will raise an error.
 cubicBezier' :: Scientific -> Scientific -> Scientific -> Scientific -> Easing
+easingToCss :: Easing -> Text
+easingToCssWithCssAliasses :: Easing -> Text
+jumpTermToCss :: JumpTerm -> Text
 
 -- | A type that is used to describe how the jumps are done in a
 --   <a>Steps</a> construction.
@@ -78,13 +81,13 @@ pattern Start :: JumpTerm
 --   <tt>jump-end</tt>.
 pattern End :: JumpTerm
 
--- | A pattern that defines the css alias <tt>step-start</tt> that is equal
---   to <tt>steps(1, jump-start)</tt>.
-pattern StepStart :: Easing
+-- | A pattern that defines the css alias <tt>steps-start</tt> that is
+--   equal to <tt>steps(1, jump-start)</tt>.
+pattern StepsStart :: Easing
 
--- | A pattern that defines the css alias <tt>step-end</tt> that is equal
+-- | A pattern that defines the css alias <tt>steps-end</tt> that is equal
 --   to <tt>steps(1, jump-end)</tt>.
-pattern StepEnd :: Easing
+pattern StepsEnd :: Easing
 
 -- | A pattern that defines the css alias <tt>ease</tt> that is equal to
 --   <tt>cubic-bezier(0.25, 0.1, 0.25, 1)</tt>.
