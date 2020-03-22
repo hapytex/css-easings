@@ -16,7 +16,7 @@ The package documentation can be found on the [GitHub pages](https://hapytex.git
 
 There are two types of CSS easings:
 
- 1. A <code>steps(<i>n</i>, <i>jump-term</i></code> with *n* the number of
+ 1. A <code>steps(<i>n</i>, <i>jump-term</i>)</code> with *n* the number of
     steps, and *jump-term* the type of jump; and
  2. A <code>quadratic-bezier(<i>x<sub>1</sub></i>, <i>y<sub>1</sub></i>, <i>x<sub>2</sub></i>, <i>y<sub>2</sub></i>)</code>
     that works with a quaratic Bezier curve. Here both *x<sub>1</sub>* and *x<sub>2</sub>* need to between 0 and 1.
@@ -39,7 +39,7 @@ PostCSS defines extra aliases like:
  5. `easeInQuint`, `easeOutQuint`, and `easeInOutQuint`;
  6. `easeInExpo`, `easeOutExpo`, and `easeInOutExpo`;
  7. `easeInCirc`, `easeOutCirc`, and `easeInOutCirc`; and
- 8. `easeInBack`, `easeOutBack`, and `easeInOutBack`;
+ 8. `easeInBack`, `easeOutBack`, and `easeInOutBack`.
 
 These are also included as patterns in this project. When these are rendered,
 for example as a JSON string, it will use the CSS equivalent.
