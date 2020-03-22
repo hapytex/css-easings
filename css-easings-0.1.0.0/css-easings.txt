@@ -2,9 +2,16 @@
 -- See Hoogle, http://www.haskell.org/hoogle/
 
 
+-- | A package to define css easing strings. These can be used in Julius, JSON, etc. templates to limit the easings to valid ones.
+--   
+--   A package to define css easing strings. These can be used in Julius,
+--   JSON, etc. templates to limit the easings to valid ones.
 @package css-easings
 @version 0.1.0.0
 
+
+-- | A module to define css easing strings. These can be used in Julius,
+--   JSON, etc. templates to limit the easings to valid ones.
 module Css.Easing
 
 -- | A type that describes the different types of css-easings (also known
@@ -45,8 +52,19 @@ cubicBezier :: Scientific -> Scientific -> Scientific -> Scientific -> Maybe Eas
 --   between <tt>0.0</tt> and <tt>1.0</tt>. If this is the case, it returns
 --   that <a>Easing</a>, otherwise it will raise an error.
 cubicBezier' :: Scientific -> Scientific -> Scientific -> Scientific -> Easing
+
+-- | Convert an <a>Easing</a> to its css counterpart. The css aliases like
+--   <tt>"steps-start"</tt> are <i>not</i> checked. Therefore, only strings
+--   like "<tt>steps(..)" and </tt>cubic-bezier(..)@ are returned.
 easingToCss :: Easing -> Text
+
+-- | Convert an <a>Easing</a> to its css counterpart. The css aliases like
+--   <tt>"steps-start"</tt> are checked, and if they match, the alias is
+--   returned.
 easingToCssWithCssAliasses :: Easing -> Text
+
+-- | Convert a <a>JumpTerm</a> to its css counterpart. So <a>JumpStart</a>
+--   is for example converted to <tt>"jump-start"</tt>.
 jumpTermToCss :: JumpTerm -> Text
 
 -- | A type that is used to describe how the jumps are done in a
