@@ -5,11 +5,13 @@ module Css.Easing (
       Easing(Steps, CubicBezier)
     , steps, steps'
     , cubicBezier, cubicBezier'
+    -- * Convert to css
+    , easingToCss, easingToCssWithCssAliasses, jumpTermToCss
     -- * Jump terms
     , JumpTerm(JumpStart, JumpEnd, JumpNone, JumpBoth)
     , pattern Start, pattern End
     -- * Standard easing aliasses
-    , pattern StepStart, pattern StepEnd
+    , pattern StepsStart, pattern StepsEnd
     , pattern Ease, pattern Linear, pattern EaseIn, pattern EaseOut, pattern EaseInOut
     -- * PostCSS easing aliasses
     , pattern EaseInSine, pattern EaseOutSine, pattern EaseInOutSine
@@ -53,9 +55,19 @@ data Easing
     -- be in the range of 0 to 1.
     deriving (Eq, Ord, Show)
 
-_easingToCss :: Easing -> Text
-_easingToCss (Steps n j) = "steps(" <> pack (show n) <> ", " <> _jumpTermToCss j <> ")"
-_easingToCss (CubicBezier p1 p2 p3 p4) = "cubic-bezier(" <> intercalate ", " (map (pack . show) [p1, p2, p3, p4]) <> ")"
+easingToCss :: Easing -> Text
+easingToCss (Steps n j) = "steps(" <> pack (show n) <> ", " <> jumpTermToCss j <> ")"
+easingToCss (CubicBezier p1 p2 p3 p4) = "cubic-bezier(" <> intercalate ", " (map (pack . show) [p1, p2, p3, p4]) <> ")"
+
+easingToCssWithCssAliasses :: Easing -> Text
+easingToCssWithCssAliasses StepsStart = "steps-start"
+easingToCssWithCssAliasses StepsEnd = "steps-end"
+easingToCssWithCssAliasses Linear = "linear"
+easingToCssWithCssAliasses Ease = "ease"
+easingToCssWithCssAliasses EaseIn = "ease-in"
+easingToCssWithCssAliasses EaseInOut = "ease-in-out"
+easingToCssWithCssAliasses EaseOut = "ease-out"
+easingToCssWithCssAliasses e = easingToCss e
 
 -- | A type that is used to describe how the jumps are done in a 'Steps'
 -- construction.
@@ -66,11 +78,11 @@ data JumpTerm
     | JumpBoth -- ^ In css this is denoted as @jump-both@. Includes pauses at both the 0% and 100% marks, effectively adding a step during the transition time.
     deriving (Bounded, Enum, Eq, Ord, Read, Show)
 
-_jumpTermToCss :: JumpTerm -> Text
-_jumpTermToCss JumpStart = "jump-start"
-_jumpTermToCss JumpEnd = "jump-end"
-_jumpTermToCss JumpNone = "jump-none"
-_jumpTermToCss JumpBoth = "jump-both"
+jumpTermToCss :: JumpTerm -> Text
+jumpTermToCss JumpStart = "jump-start"
+jumpTermToCss JumpEnd = "jump-end"
+jumpTermToCss JumpNone = "jump-none"
+jumpTermToCss JumpBoth = "jump-both"
 
 _validPoint :: Scientific -> Bool
 _validPoint x = 0.0 <= x && x <= 1.0
@@ -113,13 +125,13 @@ pattern Start = JumpStart
 pattern End :: JumpTerm
 pattern End = JumpEnd
 
--- | A pattern that defines the css alias @step-start@ that is equal to @steps(1, jump-start)@.
-pattern StepStart :: Easing
-pattern StepStart = Steps 1 JumpStart
+-- | A pattern that defines the css alias @steps-start@ that is equal to @steps(1, jump-start)@.
+pattern StepsStart :: Easing
+pattern StepsStart = Steps 1 JumpStart
 
--- | A pattern that defines the css alias @step-end@ that is equal to @steps(1, jump-end)@.
-pattern StepEnd :: Easing
-pattern StepEnd = Steps 1 JumpEnd
+-- | A pattern that defines the css alias @steps-end@ that is equal to @steps(1, jump-end)@.
+pattern StepsEnd :: Easing
+pattern StepsEnd = Steps 1 JumpEnd
 
 -- | A pattern that defines the css alias @ease@ that is equal to @cubic-bezier(0.25, 0.1, 0.25, 1)@.
 pattern Ease :: Easing
@@ -262,21 +274,21 @@ instance Arbitrary JumpTerm where
 
 -- ToMarkup instances
 instance ToMarkup Easing where
-    toMarkup = text . _easingToCss
+    toMarkup = text . easingToCssWithCssAliasses
 
 instance ToMarkup JumpTerm where
-    toMarkup = text . _jumpTermToCss
+    toMarkup = text . jumpTermToCss
 
 -- ToJavascript instances
 instance ToJavascript Easing where
-    toJavascript = toJavascript . _easingToCss
+    toJavascript = toJavascript . easingToCssWithCssAliasses
 
 instance ToJavascript JumpTerm where
-    toJavascript = toJavascript . _jumpTermToCss
+    toJavascript = toJavascript . jumpTermToCss
 
 -- ToJSON instances
 instance ToJSON Easing where
-    toJSON = String . _easingToCss
+    toJSON = String . easingToCssWithCssAliasses
 
 instance ToJSON JumpTerm where
-    toJSON = String . _jumpTermToCss
+    toJSON = String . jumpTermToCss
