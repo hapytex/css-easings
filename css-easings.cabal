@@ -1,7 +1,9 @@
 name:                css-easings
 version:             0.1.0.0
-synopsis:            A package to define css easing strings. These can be used in Julius, JSON, etc. templates to limit the easings to valid ones.
--- description:
+synopsis:            Defining and manipulating css easing strings.
+description:
+  A package to define css easing strings. These can be used in Julius,
+  JSON, etc. templates to limit the easings to valid ones.
 homepage:            https://github.com/KommuSoft/css-easings#readme
 license:             BSD3
 license-file:        LICENSE
