@@ -1,6 +1,8 @@
 # css-easings
 
 [![Build Status of the package by Travis](https://travis-ci.com/hapytex/css-easings.svg?branch=master)](https://travis-ci.com/hapytex/css-easings)
+[![Build Status of the package by Hackage](https://matrix.hackage.haskell.org/api/v2/packages/css-easings/badge)](https://matrix.hackage.haskell.org/#/package/css-easings)
+[![Hackage version badge](https://img.shields.io/hackage/v/css-easings.svg)](https://hackage.haskell.org/package/css-easings)
 
 A package that can be used to render CSS easing functions. One can use the
 `Easing` type to specify how the "speed" of a certain animation should be
@@ -16,10 +18,9 @@ The package documentation can be found on the [GitHub pages](https://hapytex.git
 
 There are two types of CSS easings:
 
- 1. A <code>steps(<i>n</i>, <i>jump-term</i>)</code> with *n* the number of
-    steps, and *jump-term* the type of jump; and
- 2. A <code>quadratic-bezier(<i>x<sub>1</sub></i>, <i>y<sub>1</sub></i>, <i>x<sub>2</sub></i>, <i>y<sub>2</sub></i>)</code>
-    that works with a quaratic Bezier curve. Here both *x<sub>1</sub>* and *x<sub>2</sub>* need to between 0 and 1.
+ 1. A `steps(n, jump-term)` with *n* the number of steps, and *jump-term* the type of jump; and
+ 2. A `quadratic-bezier(x1, y1, x2, y2)`
+    that works with a quaratic Bezier curve. Here both `x1` and `x2` need to between 0 and 1.
 
 The type that we use for easings in this package is `Easing`.
 
@@ -78,4 +79,4 @@ You can contact the package maintainer by sending a mail to
 
 ---
 
-This package is dedicated to *Nordin Allaert* (2001-2020). His life went in an `ease-in` manner, but was taken too soon.
+This package is dedicated to *Nordin Allaert* (2001-2020), the son of a colleague. His life went in an `ease-in` manner, but was taken too soon.
