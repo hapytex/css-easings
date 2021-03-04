@@ -8,9 +8,9 @@ homepage:            https://github.com/hapytex/css-easings#readme
 license:             BSD3
 license-file:        LICENSE
 author:              Willem Van Onsem
-maintainer:          hapytexeu@gmail.com
+maintainer:          hapytexeu+gh@gmail.com
 copyright:           2019 Willem Van Onsem
-category:            webdevelopment
+category:            web
 build-type:          Simple
 extra-source-files:
     README.md

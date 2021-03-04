@@ -1,6 +1,6 @@
 # css-easings
 
-[![Build Status of the package by Travis](https://travis-ci.com/hapytex/css-easings.svg?branch=master)](https://travis-ci.com/hapytex/css-easings)
+[![Build Status of the package by GitHub actions](https://github.com/hapytex/css-easings/actions/workflows/build-ci.yml/badge.svg)](https://github.com/hapytex/css-easings/actions/workflows/build-ci.yml)
 [![Build Status of the package by Hackage](https://matrix.hackage.haskell.org/api/v2/packages/css-easings/badge)](https://matrix.hackage.haskell.org/#/package/css-easings)
 [![Hackage version badge](https://img.shields.io/hackage/v/css-easings.svg)](https://hackage.haskell.org/package/css-easings)
 
