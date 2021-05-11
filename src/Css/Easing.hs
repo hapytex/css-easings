@@ -1,4 +1,4 @@
-{-# LANGUAGE OverloadedStrings, PatternSynonyms #-}
+{-# LANGUAGE CPP, OverloadedStrings, PatternSynonyms #-}
 
 {-|
 Module      : Css.Easing
@@ -37,6 +37,9 @@ module Css.Easing (
 import Data.Aeson(Value(String), ToJSON(toJSON))
 import Data.Default(Default(def))
 import Data.Scientific(Scientific, scientific)
+#if __GLASGOW_HASKELL__ < 803
+import Data.Semigroup((<>))
+#endif
 import Data.Text(Text, intercalate, pack)
 
 import Text.Blaze(ToMarkup(toMarkup), text)
@@ -301,10 +304,18 @@ instance ToMarkup JumpTerm where
 
 -- ToJavascript instances
 instance ToJavascript Easing where
+#if __GLASGOW_HASKELL__ < 803
+    toJavascript = toJavascript . toJSON . easingToCssWithCssAliasses
+#else
     toJavascript = toJavascript . easingToCssWithCssAliasses
+#endif
 
 instance ToJavascript JumpTerm where
+#if __GLASGOW_HASKELL__ < 803
+    toJavascript = toJavascript . toJSON . jumpTermToCss
+#else
     toJavascript = toJavascript . jumpTermToCss
+#endif
 
 -- ToJSON instances
 instance ToJSON Easing where
