@@ -1,4 +1,4 @@
-{-# LANGUAGE CPP, OverloadedStrings, PatternSynonyms #-}
+{-# LANGUAGE CPP, DeriveDataTypeable, DeriveGeneric, OverloadedStrings, PatternSynonyms #-}
 
 {-|
 Module      : Css.Easing
@@ -34,13 +34,18 @@ module Css.Easing (
     , pattern EaseInBack, pattern EaseOutBack, pattern EaseInOutBack
   ) where
 
+import Control.DeepSeq(NFData)
+
 import Data.Aeson(Value(String), ToJSON(toJSON))
+import Data.Data(Data)
 import Data.Default(Default(def))
 import Data.Scientific(Scientific, scientific)
 #if __GLASGOW_HASKELL__ < 803
 import Data.Semigroup((<>))
 #endif
 import Data.Text(Text, intercalate, pack)
+
+import GHC.Generics(Generic)
 
 import Text.Blaze(ToMarkup(toMarkup), text)
 import Text.Julius(ToJavascript(toJavascript))
@@ -66,7 +71,9 @@ data Easing
     | CubicBezier Scientific Scientific Scientific Scientific
     -- ^ An author defined cubic-Bezier curve, where the p1 and p3 values must
     -- be in the range of 0 to 1.
-    deriving (Eq, Ord, Show)
+    deriving (Data, Eq, Generic, Ord, Show)
+
+instance NFData Easing
 
 -- | Convert an 'Easing' to its css counterpart. The css aliases like
 -- @"steps-start"@ are /not/ checked. Therefore, only strings like "@steps(..)"
@@ -96,7 +103,9 @@ data JumpTerm
     | JumpEnd -- ^ In css this is denoted as @jump-end@. Denotes a right-continuous function, so that the last jump happens when the animation ends.
     | JumpNone -- ^ In css this is denoted as @jump-none@. There is no jump on either end. Instead, holding at both the 0% mark and the 100% mark, each for 1/n of the duration.
     | JumpBoth -- ^ In css this is denoted as @jump-both@. Includes pauses at both the 0% and 100% marks, effectively adding a step during the transition time.
-    deriving (Bounded, Enum, Eq, Ord, Read, Show)
+    deriving (Bounded, Data, Enum, Eq, Generic, Ord, Read, Show)
+
+instance NFData JumpTerm
 
 -- | Convert a 'JumpTerm' to its css counterpart. So 'JumpStart' is for example
 -- converted to @"jump-start"@.
