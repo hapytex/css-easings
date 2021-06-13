@@ -55,6 +55,9 @@ jobs:
       uses: hapytex/github-actions/actions/hlint@master
 
   linux5:
+    strategy:
+      matrix:
+        resolver: [lts-10, lts-11, lts-12, lts-13, lts-14, lts-15, lts-16, lts-17]
     name: Run the tests
     runs-on: ubuntu-latest
     steps:
@@ -62,8 +65,10 @@ jobs:
       uses: hapytex/github-actions/actions/setup-haskell@master
     - name: checkout code
       uses: actions/checkout@v2.3.1
-    - name: run the tests of the package
-      run: stack --no-terminal --skip-ghc-check test
+    - name: test the software with the given resolver
+      uses: hapytex/github-actions/actions/run-haskell-tests@master
+      with:
+        resolver: ${{ matrix.resolver }}
 
   linux6:
     name: Deploy documentation to GitHub pages
