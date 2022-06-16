@@ -38,7 +38,7 @@ import Control.DeepSeq(NFData)
 
 import Data.Aeson(Value(String), ToJSON(toJSON))
 import Data.Data(Data)
-import Data.Default(Default(def))
+import Data.Default.Class(Default(def))
 import Data.Scientific(Scientific, scientific)
 #if __GLASGOW_HASKELL__ < 803
 import Data.Semigroup((<>))
