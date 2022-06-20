@@ -1,5 +1,5 @@
 name:                css-easings
-version:             0.2.2.0
+version:             0.2.3.0
 synopsis:            Defining and manipulating css easing strings.
 description:
   A package to define css easing strings. These can be used in Julius,
